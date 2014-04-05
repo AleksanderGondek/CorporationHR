@@ -1,0 +1,4 @@
+#Ignore basic generated random stuff
+packages/*
+CorporationHR/CorporationHR/bin/*
+CorporationHR/CorporationHR/obj/*
