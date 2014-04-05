@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using CorporationHR.Context;
+using CorporationHR.Models;
 using Ninject;
 using Ninject.Web.Common;
 
@@ -23,12 +24,28 @@ namespace CorporationHR
         {
             AreaRegistration.RegisterAllAreas();
             WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             //DbInitialization, with magic concering SimpleAuth
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<CorporationHrDbContext, DatabaseInitializator>());
+
+            //Filling up with Clearances
+            var db = new CorporationHrDbContext();
+            if (!db.Clearences.Any(x => x.ClearenceName.Equals("Public")))
+            {
+                var clearenceGreen = new ClearenceModel { ClearenceName = "Public" };
+                var clearenceOrange = new ClearenceModel { ClearenceName ="Confidential" };
+                var clearenceRed = new ClearenceModel { ClearenceName = "Secret" };
+                var clearenceBlack = new ClearenceModel { ClearenceName = "Top Secret" };
+
+                db.Clearences.Add(clearenceGreen);
+                db.Clearences.Add(clearenceOrange);
+                db.Clearences.Add(clearenceRed);
+                db.Clearences.Add(clearenceBlack);
+                db.SaveChanges();
+            }
+
         }
         protected override IKernel CreateKernel()
         {

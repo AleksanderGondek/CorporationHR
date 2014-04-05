@@ -16,7 +16,10 @@ namespace CorporationHR.Context
         public CorporationHrDbContext(DbConnection existingConnection, bool ifOwnsConnection) : base(existingConnection, ifOwnsConnection) {  }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<ClearenceModel> Clearences { get; set; }
+
         IQueryable<UserProfile> ICorporationHrDatabaseContext.UserProfiles { get { return UserProfiles.AsQueryable(); } }
+        IQueryable<ClearenceModel> ICorporationHrDatabaseContext.Clearences { get { return Clearences.AsQueryable(); } } 
 
         public T Attach<T>(T entity) where T : class
         {

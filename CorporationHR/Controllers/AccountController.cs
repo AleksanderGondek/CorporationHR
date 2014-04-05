@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using WebMatrix.WebData;
 using CorporationHR.Models;
+using CorporationHR.Helpers;
 
 namespace CorporationHR.Controllers
 {
@@ -75,13 +76,13 @@ namespace CorporationHR.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
+                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { FirstName = model.FirstName, LastName = model.LastName, Email = model.Email });
+                    Roles.AddUserToRole(model.UserName, "Disabled");
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                    ModelState.AddModelError("", GeneralHelper.ErrorCodeToString(e.StatusCode));
                 }
             }
 
@@ -92,11 +93,13 @@ namespace CorporationHR.Controllers
         //
         // GET: /Account/Manage
 
-        public ActionResult Manage(ManageMessageId? message)
+        //TODO : Figure out what to do with this
+        [Authorize(Roles = "Active")]
+        public ActionResult Manage(GeneralHelper.ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                message == GeneralHelper.ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message == GeneralHelper.ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : "";
             ViewBag.ReturnUrl = Url.Action("Manage");
             return View();
@@ -107,6 +110,7 @@ namespace CorporationHR.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Active")]
         public ActionResult Manage(UserPasswordModel model)
         {
             ViewBag.ReturnUrl = Url.Action("Manage");
@@ -123,7 +127,7 @@ namespace CorporationHR.Controllers
                 }
                 if (changePasswordSucceeded)
                 {
-                    return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                    return RedirectToAction("Manage", new { Message = GeneralHelper.ManageMessageId.ChangePasswordSuccess });
                 }
                 
                 ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
@@ -133,63 +137,14 @@ namespace CorporationHR.Controllers
             return View(model);
         }
 
-        #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            
+            return RedirectToAction("Index", "Home");
         }
-
-        public enum ManageMessageId
-        {
-            ChangePasswordSuccess,
-            SetPasswordSuccess,
-            RemoveLoginSuccess,
-        }
-
-        private static string ErrorCodeToString(MembershipCreateStatus createStatus)
-        {
-            // See http://go.microsoft.com/fwlink/?LinkID=177550 for
-            // a full list of status codes.
-            switch (createStatus)
-            {
-                case MembershipCreateStatus.DuplicateUserName:
-                    return "User name already exists. Please enter a different user name.";
-
-                case MembershipCreateStatus.DuplicateEmail:
-                    return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
-
-                case MembershipCreateStatus.InvalidPassword:
-                    return "The password provided is invalid. Please enter a valid password value.";
-
-                case MembershipCreateStatus.InvalidEmail:
-                    return "The e-mail address provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidAnswer:
-                    return "The password retrieval answer provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidQuestion:
-                    return "The password retrieval question provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidUserName:
-                    return "The user name provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.ProviderError:
-                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-
-                case MembershipCreateStatus.UserRejected:
-                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-
-                default:
-                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-            }
-        }
-        #endregion
     }
 }

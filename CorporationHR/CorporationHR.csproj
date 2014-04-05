@@ -157,11 +157,15 @@
     <Compile Include="Context\DatabaseInitializator.cs" />
     <Compile Include="Context\ICorporationHrDatabaseContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\GeneralHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AdministrationModels.cs" />
+    <Compile Include="Models\ClearenceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\RepositoryPackage.cs" />
     <Compile Include="Repositories\SystemUsersRepository.cs" />
@@ -272,6 +276,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Administration\ManageUsers.cshtml" />
+    <Content Include="Views\Administration\UserDetails.cshtml" />
+    <Content Include="Views\Administration\EditUser.cshtml" />
+    <Content Include="Views\Administration\DeleteUser.cshtml" />
+    <Content Include="Views\Administration\CreateUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
