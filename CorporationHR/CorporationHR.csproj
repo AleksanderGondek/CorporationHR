@@ -154,6 +154,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\CorporationHrDatabaseContextScaffoldClass.cs" />
     <Compile Include="Context\CorporationHrDbContext.cs" />
+    <Compile Include="Context\DatabaseInitializator.cs" />
     <Compile Include="Context\ICorporationHrDatabaseContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -162,6 +163,8 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\RepositoryPackage.cs" />
+    <Compile Include="Repositories\SystemUsersRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

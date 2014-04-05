@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using CorporationHR.Models;
-using WebMatrix.WebData;
 
 namespace CorporationHR.Context
 {
@@ -40,19 +38,5 @@ namespace CorporationHR.Context
         {
             return Set<T>().AsQueryable();
         }
-    }
-
-    public class DatabaseInitializator : DbMigrationsConfiguration<CorporationHrDbContext>
-    {
-        public DatabaseInitializator()
-        {
-            this.AutomaticMigrationsEnabled = true;
-            SeedMembership();
-        }
-
-        private void SeedMembership()
-        {
-            WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
-        } 
     }
 }
