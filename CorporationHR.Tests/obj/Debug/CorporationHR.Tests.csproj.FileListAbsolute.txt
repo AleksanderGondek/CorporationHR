@@ -70,3 +70,7 @@ C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR.Tests\bin\De
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR.Tests\obj\Debug\CorporationHR.Tests.csprojResolveAssemblyReference.cache
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR.Tests\obj\Debug\CorporationHR.Tests.dll
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR.Tests\obj\Debug\CorporationHR.Tests.pdb
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR.Tests\bin\Debug\Ninject.Web.Common.dll
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR.Tests\bin\Debug\Ninject.dll
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR.Tests\bin\Debug\Ninject.Web.Common.xml
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR.Tests\bin\Debug\Ninject.xml

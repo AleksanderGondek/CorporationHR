@@ -6,13 +6,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using WebMatrix.WebData;
-using CorporationHR.Filters;
 using CorporationHR.Models;
 
 namespace CorporationHR.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //

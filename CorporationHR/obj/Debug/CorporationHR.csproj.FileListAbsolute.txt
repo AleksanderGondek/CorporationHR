@@ -6,6 +6,9 @@ C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\EntityFr
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\Microsoft.Web.Infrastructure.dll
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\Newtonsoft.Json.dll
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\Ninject.dll
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\Ninject.Web.Common.dll
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\Ninject.Web.Mvc.dll
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\System.Net.Http.dll
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\System.Net.Http.Formatting.dll
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\System.Net.Http.WebRequest.dll
@@ -18,9 +21,13 @@ C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\System.W
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\System.Web.WebPages.Deployment.dll
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\System.Web.WebPages.dll
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\System.Web.WebPages.Razor.dll
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\WebActivatorEx.dll
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\WebGrease.dll
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\WebMatrix.Data.dll
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\WebMatrix.WebData.dll
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\Ninject.xml
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\Ninject.Web.Common.xml
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\Ninject.Web.Mvc.xml
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\EntityFramework.xml
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\Newtonsoft.Json.xml
 C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\bin\System.Net.Http.xml
