@@ -12,7 +12,6 @@ using WebMatrix.WebData;
 
 namespace CorporationHR.Controllers
 {
-    //TODO: figure out what to do with this
     [Authorize(Users="admin")]
     public class AdministrationController : Controller
     {

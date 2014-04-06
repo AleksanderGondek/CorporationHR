@@ -14,19 +14,12 @@ namespace CorporationHR.Repositories
 
         public new List<AdminUserProfileModel> All()
         {
-            var toBeReturned = new List<AdminUserProfileModel>();
-
-            foreach (var profile in DatabaseContext.UserProfiles)
-            {
-                toBeReturned.Add(new AdminUserProfileModel(profile));
-            }
-
-            return toBeReturned;
+            return DatabaseContext.UserProfiles.ToList().Select(profile => new AdminUserProfileModel(profile)).ToList();
         }
 
         public void AdminUpdate(AdminUserProfileModel userModel)
         {
-            var entity = DatabaseContext.UserProfiles.Single(x => x.UserId.Equals(userModel.UserId));
+            var entity = DatabaseContext.UserProfiles.ToList().Single(x => x.UserId.Equals(userModel.UserId));
             if (entity == null) return;
 
             entity.UserName = userModel.UserName;
@@ -34,12 +27,15 @@ namespace CorporationHR.Repositories
             entity.LastName = userModel.LastName;
             entity.Email = userModel.Email;
 
+            var selectedClearance = DatabaseContext.Clearences.ToList().Single(x => x.ClearenceId.Equals(userModel.SelectedClearanceId));
+            if (selectedClearance != null) entity.ClearenceModel = selectedClearance; 
+
             DatabaseContext.SaveChanges();
         }
 
         public void Remove(int userId)
         {
-            var entityToRemoval = DatabaseContext.UserProfiles.Single(x => x.UserId.Equals(userId));
+            var entityToRemoval = DatabaseContext.UserProfiles.ToList().Single(x => x.UserId.Equals(userId));
             if (entityToRemoval == null) return;
             var userRoles = Roles.GetRolesForUser(entityToRemoval.UserName);
             Roles.RemoveUserFromRoles(entityToRemoval.UserName, userRoles);
@@ -49,7 +45,7 @@ namespace CorporationHR.Repositories
 
         public override UserProfile Find(int id)
         {
-            return DatabaseContext.UserProfiles.Single(x => x.UserId == id);
+            return DatabaseContext.UserProfiles.ToList().Single(x => x.UserId == id);
         }
     }
 }

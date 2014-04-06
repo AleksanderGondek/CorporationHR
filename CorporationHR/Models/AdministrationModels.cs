@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CorporationHR.Helpers;
 
 namespace CorporationHR.Models
 {
@@ -18,6 +19,8 @@ namespace CorporationHR.Models
             FirstName = profile.FirstName;
             LastName = profile.LastName;
             Email = profile.Email;
+            SelectedClearanceId = profile.ClearenceModel != null ? profile.ClearenceModel.ClearenceId : -1;
+            Clearances = GeneralHelper.GetClearencesSelectList();
         }
 
         [Display(Name = "User id")]
@@ -39,5 +42,10 @@ namespace CorporationHR.Models
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Clearance")]
+        public int SelectedClearanceId { get; set; }
+        public IEnumerable<SelectListItem> Clearances { get; set; }
     }
 }

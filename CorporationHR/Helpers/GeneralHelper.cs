@@ -2,12 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.Security;
 
 namespace CorporationHR.Helpers
 {
     public static class GeneralHelper
     {
+        public static Dictionary<int, string> Clearences = new Dictionary<int, string>();
+
+        public static IEnumerable<SelectListItem> GetClearencesSelectList()
+        {
+            if (!Clearences.Any()) return null;
+            var values = Clearences.Select(x => new SelectListItem() {Value = x.Key.ToString(), Text = x.Value});
+            return new SelectList(values, "Value", "Text");
+        }
+
         public enum ManageMessageId
         {
             ChangePasswordSuccess,

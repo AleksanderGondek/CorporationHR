@@ -32,19 +32,9 @@ namespace CorporationHR
 
             //Filling up with Clearances
             var db = new CorporationHrDbContext();
-            if (!db.Clearences.Any(x => x.ClearenceName.Equals("Public")))
-            {
-                var clearenceGreen = new ClearenceModel { ClearenceName = "Public" };
-                var clearenceOrange = new ClearenceModel { ClearenceName ="Confidential" };
-                var clearenceRed = new ClearenceModel { ClearenceName = "Secret" };
-                var clearenceBlack = new ClearenceModel { ClearenceName = "Top Secret" };
-
-                db.Clearences.Add(clearenceGreen);
-                db.Clearences.Add(clearenceOrange);
-                db.Clearences.Add(clearenceRed);
-                db.Clearences.Add(clearenceBlack);
-                db.SaveChanges();
-            }
+            db.Database.Initialize(false);
+            db.UserProfiles.Find(1);
+            db.Clearences.Find(1);
 
         }
         protected override IKernel CreateKernel()

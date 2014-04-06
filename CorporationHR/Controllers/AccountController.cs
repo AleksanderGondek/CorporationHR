@@ -78,7 +78,7 @@ namespace CorporationHR.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { FirstName = model.FirstName, LastName = model.LastName, Email = model.Email });
                     Roles.AddUserToRole(model.UserName, "Disabled");
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Registered");
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -91,9 +91,17 @@ namespace CorporationHR.Controllers
         }
 
         //
+        // GET: /Account/Registered
+
+        [Authorize(Roles = "Disabled")]
+        public ActionResult Registered()
+        {
+            return View();
+        }
+
+        //
         // GET: /Account/Manage
 
-        //TODO : Figure out what to do with this
         [Authorize(Roles = "Active")]
         public ActionResult Manage(GeneralHelper.ManageMessageId? message)
         {

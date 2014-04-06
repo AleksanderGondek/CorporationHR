@@ -1,5 +1,8 @@
 ﻿using System.Data.Entity.Migrations;
+using System.Linq;
 using System.Web.Security;
+using CorporationHR.Helpers;
+using CorporationHR.Models;
 using WebMatrix.WebData;
 
 namespace CorporationHR.Context
@@ -15,6 +18,8 @@ namespace CorporationHR.Context
         {
             AttachSimpleAuth();
             AddUsers();
+            AddClerences(context);
+            AddClearencesToUsers(context);
         }
 
         private void AttachSimpleAuth()
@@ -36,6 +41,40 @@ namespace CorporationHR.Context
                 roles.AddUsersToRoles(new[] { "admin", "userTest1", "userTest2" }, new[] { "Active" });
             }
 
+        }
+
+        private void AddClerences(CorporationHrDbContext context)
+        {
+            var listOfClearencesInDb = context.Clearences.Where(x => x.ClearenceId > 0).ToList(); //Don't ask
+            if (listOfClearencesInDb.Any())
+            {
+                listOfClearencesInDb.ForEach(x => GeneralHelper.Clearences.Add(x.ClearenceId, x.ClearenceName));
+                return;
+            }
+
+            var clearenceGreen = new ClearenceModel { ClearenceName = "Public" };
+            var clearenceOrange = new ClearenceModel { ClearenceName = "Confidential" };
+            var clearenceRed = new ClearenceModel { ClearenceName = "Secret" };
+            var clearenceBlack = new ClearenceModel { ClearenceName = "Top Secret" };
+
+            context.Clearences.Add(clearenceGreen);
+            context.Clearences.Add(clearenceOrange);
+            context.Clearences.Add(clearenceRed);
+            context.Clearences.Add(clearenceBlack);
+            context.SaveChanges();
+        }
+
+        private void AddClearencesToUsers(CorporationHrDbContext context)
+        {
+            var users = context.UserProfiles.ToList();
+            var clearences = context.Clearences.ToList();
+            if (!users.Any() || !clearences.Any()) return;
+
+            foreach (var user in users)
+            {
+                user.ClearenceModel = !user.UserName.Equals("admin") ? clearences.Single(x => x.ClearenceName.Equals("Public")) : clearences.Single(x => x.ClearenceName.Equals("Top Secret"));
+                context.SaveChanges();
+            }
         }
     }
 }

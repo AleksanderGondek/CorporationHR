@@ -7,10 +7,13 @@ using System.Web;
 
 namespace CorporationHR.Models
 {
+    [Table("ClearenceModels")]
     public class ClearenceModel
     {
         [Key]
         public int ClearenceId { get; set; }
         public string ClearenceName { get; set; }
+
+        public virtual ICollection<UserProfile> UserProfiles { get; set; } 
     }
 }

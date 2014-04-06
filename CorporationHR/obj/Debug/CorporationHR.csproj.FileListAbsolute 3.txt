@@ -1,0 +1,3 @@
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\obj\Debug\CorporationHR.dll
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\obj\Debug\CorporationHR.csprojResolveAssemblyReference.cache
+C:\Skydrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR\obj\Debug\CorporationHR.pdb

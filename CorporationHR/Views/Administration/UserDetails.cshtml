@@ -39,6 +39,13 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Email)
     </div>
+    
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.SelectedClearanceId)
+    </div>
+    <div class="display-field">
+        @Html.DropDownListFor(model => model.SelectedClearanceId, Model.Clearances, new { disabled = "disabled" })
+    </div>
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "EditUser", new { id=Model.UserId }) |

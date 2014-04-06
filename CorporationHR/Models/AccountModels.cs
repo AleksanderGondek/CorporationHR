@@ -19,6 +19,8 @@ namespace CorporationHR.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+
+        public virtual ClearenceModel ClearenceModel { get; set; }
     }
 
     public class UserPasswordModel
