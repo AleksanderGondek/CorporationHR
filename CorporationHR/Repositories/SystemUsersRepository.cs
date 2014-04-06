@@ -12,12 +12,12 @@ namespace CorporationHR.Repositories
     {
         public SystemUsersRepository(ICorporationHrDatabaseContext databaseContext) : base(databaseContext) { }
 
-        public new List<AdminUserProfileModel> All()
+        public new List<UserProfileForAdminOperations> All()
         {
-            return DatabaseContext.UserProfiles.ToList().Select(profile => new AdminUserProfileModel(profile)).ToList();
+            return DatabaseContext.UserProfiles.ToList().Select(profile => new UserProfileForAdminOperations(profile)).ToList();
         }
 
-        public void AdminUpdate(AdminUserProfileModel userModel)
+        public void AdminUpdate(UserProfileForAdminOperations userModel)
         {
             var entity = DatabaseContext.UserProfiles.ToList().Single(x => x.UserId.Equals(userModel.UserId));
             if (entity == null) return;

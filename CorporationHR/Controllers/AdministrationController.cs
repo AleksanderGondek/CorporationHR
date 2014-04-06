@@ -35,7 +35,7 @@ namespace CorporationHR.Controllers
 
         public ActionResult UserDetails(int id)
         {
-            return View(new AdminUserProfileModel(_systemUsersRepo.Find(id)));
+            return View(new UserProfileForAdminOperations(_systemUsersRepo.Find(id)));
         }
 
         //
@@ -76,14 +76,14 @@ namespace CorporationHR.Controllers
 
         public ActionResult EditUser(int id)
         {
-            return View(new AdminUserProfileModel(_systemUsersRepo.Find(id)));
+            return View(new UserProfileForAdminOperations(_systemUsersRepo.Find(id)));
         }
 
         //
         // POST: /Administration/Edit/5
 
         [HttpPost]
-        public ActionResult EditUser(AdminUserProfileModel userModel)
+        public ActionResult EditUser(UserProfileForAdminOperations userModel)
         {
             try
             {
@@ -104,14 +104,14 @@ namespace CorporationHR.Controllers
 
         public ActionResult DeleteUser(int id)
         {
-            return View(new AdminUserProfileModel(_systemUsersRepo.Find(id)));
+            return View(new UserProfileForAdminOperations(_systemUsersRepo.Find(id)));
         }
 
         //
         // POST: /Administration/Delete/5
 
         [HttpPost]
-        public ActionResult DeleteUser(AdminUserProfileModel userModel)
+        public ActionResult DeleteUser(UserProfileForAdminOperations userModel)
         {
             try
             {
