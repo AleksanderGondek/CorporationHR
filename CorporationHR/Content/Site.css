@@ -93,7 +93,7 @@ h5, h6 {
 
 /* main layout
 ----------------------------------------------------------*/
-.content-wrapper {
+.content-wrapper, #tophead {
     margin: 0 auto;
     max-width: 960px;
 }
@@ -124,6 +124,8 @@ footer {
     font-size: .8em;
     height: 100px;
 }
+
+
 
 
 /* site title
@@ -753,4 +755,42 @@ tr.pager td {
         footer p {
             margin: 0;
         }
+}
+
+    /* admin menu
+    ----------------------------------------------------------*/
+#admin_menu {
+    background: black;
+    overflow: hidden;
+    padding-bottom: 15px
+}
+
+#admin_menu nav{
+    padding-right: 15px;
+    vertical-align: middle;
+    float: right;
+}
+            
+#admin_menu li {
+	float: left; 
+	list-style-type:none;
+    font-weight: bold;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+#admin_menu p {
+    margin-left: 15px;
+    color: white;
+    float: left;
+}
+
+#admin_menu a:link, #admin_menu a:visited, #admin_menu a:active
+{
+	color: white;
+    text-decoration: none;
+}
+
+#admin_menu a:hover {
+    background: #444444;
 }

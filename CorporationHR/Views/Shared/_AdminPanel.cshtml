@@ -1,0 +1,15 @@
+﻿@{
+    if (Request.IsAuthenticated) { 
+        if (User.Identity.Name.Equals("admin"))
+        {
+          <div id="admin_menu">
+                <p class="titleWidth">CorporationHr - Admininistartion Panel</p>
+                <nav >
+                    <ul>
+                        <li>@Html.ActionLink("Manage Users", "ManageUsers", "Administration")</li>
+                    </ul>
+                </nav>
+            </div>
+        }
+    }
+ }
