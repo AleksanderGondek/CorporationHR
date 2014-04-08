@@ -14,6 +14,10 @@ body {
     padding: 0;
 }
 
+header {
+    /*height: 80px;*/
+}
+
 a {
     color: #333;
     outline: none;
@@ -762,7 +766,7 @@ tr.pager td {
 #admin_menu {
     background: black;
     overflow: hidden;
-    padding-bottom: 15px
+    padding-bottom: 15px;
 }
 
 #admin_menu nav{
