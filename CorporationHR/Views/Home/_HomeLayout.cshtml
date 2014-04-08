@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="~/Content/dist/ico/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <title>@ViewBag.Title - CorporationTech</title>
+
+    <script src="~/Scripts/jquery2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/holder.js"></script>
+
+    <link href="@Url.Content("~/Content/dist/css/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/dist/css/carousel.css")" rel="stylesheet" type="text/css" />  
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    @*@Html.Partial("_AdminPanel")*@
+    <!-- Recent Change -->
+    <div id="pointer3"></div>
+    <div id="pointer4"></div>
+    <!-- Recent Change End -->
+    <div class="navbar-wrapper">
+        @Html.Partial("_AdminPanel")
+        <div class="container">
+
+            <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <img src="~/Content/dist/ico/favicon.png" alt="Logo" style="height: 35px; display: inline; float: left; margin: 6px 4px 0px 0px;" />
+                        @Html.ActionLink("CorporationTech", "Index", "Home", null, new { @class = "navbar-brand" })
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Your account", "Manage", "Account")</li>
+                            }
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="Content/dist/images/topBg1.jpg" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Lorem</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non enim non magna volutpat mollis. Morbi a est at metus semper lobortis sit amet nec leo. Nam viverra fringilla ipsum sit amet congue. Nulla facilisi. </p>
+                        <p><a class="btn btn-lg btn-primary" href="@Url.Action("Register", "Account")" role="button">Try it today</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="Content/dist/images/topBg2.jpg" alt="Second slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Ipsum</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non enim non magna volutpat mollis. Morbi a est at metus semper lobortis sit amet nec leo. Nam viverra fringilla ipsum sit amet congue. Nulla facilisi. </p>
+                        <p><a class="btn btn-lg btn-primary" href="@Url.Action("About")" role="button">Learn more</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="Content/dist/images/topBg3.jpg" alt="Third slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Ipsum Lorem</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non enim non magna volutpat mollis. Morbi a est at metus semper lobortis sit amet nec leo. Nam viverra fringilla ipsum sit amet congue. Nulla facilisi. </p>
+                        <p><a class="btn btn-lg btn-primary" href="@Url.Action("About")" role="button">Learn more</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+    <div class="container marketing">
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-lg-4">
+                <img class="img-circle" src="Content/dist/images/140x140_Placeholder.jpg" alt="Generic placeholder image">
+                <h2>Fast</h2>
+                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <img class="img-circle" src="Content/dist/images/140x140_Placeholder.jpg" alt="Generic placeholder image">
+                <h2>Accountable </h2>
+                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <img class="img-circle" src="Content/dist/images/140x140_Placeholder.jpg" alt="Generic placeholder image">
+                <h2>Good</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">CorpoHR. That's right. <span class="text-muted">It'll blow your mind.</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive" src="Content/dist/images/500x500_Placeholder.jpg" alt="Generic placeholder image">
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive" src="Content/dist/images/500x500_Placeholder.jpg" alt="Generic placeholder image">
+            </div>
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Corporation HR!</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Also I'm out of ideas. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive" src="Content/dist/images/500x500_Placeholder.jpg" alt="Generic placeholder image">
+            </div>
+        </div>
+        
+        @RenderBody()
+
+        <hr class="featurette-divider-footer2">
+
+        <footer>
+            <p class="pull-right2"><a href="#">Back to top</a></p>
+            <p class="footer2">&copy; @DateTime.Now.Year - CorporationTech &middot; @Html.ActionLink("Home", "Index", "Home")  &middot; @Html.ActionLink("About", "About", "Home")  &middot; @Html.ActionLink("Contact", "Contact", "Home")
+        </footer>
+
+    </div>
+</body>
+</html>
+

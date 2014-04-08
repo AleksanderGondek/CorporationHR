@@ -12,6 +12,7 @@ namespace CorporationHR.Models
     {
         [Key]
         public int EmployeeId { get; set; }
+        public int MaskedEmployeeId { get; set; }
         public string CorpoId { get; set; }
         public string CountryIdNumber { get; set; }
         public string SocialSecurityNumber { get; set; }
@@ -26,26 +27,5 @@ namespace CorporationHR.Models
         public string CountryOfResidence { get; set; }
         public string PrivateEmail { get; set; }
         public string PrivatePhoneNumber { get; set; }
-    }
-
-    [Table("EmployeeClassification")]
-    public class EmployeeClassification
-    {
-        public int RowClassification { get; set; }
-        public int EmployeeIdclassification { get; set; }
-        public int CorpoIdClassification { get; set; }
-        public int CountryIdNumberClassification { get; set; }
-        public int SocialSecurityNumberClassification { get; set; }
-        public int FirstNameClassification { get; set; }
-        public int MiddlenameClassification { get; set; }
-        public int FamilynameClassification { get; set; }
-
-        public int CorporatePhoneNumberClassification { get; set; }
-        public int CorporateEmailClassification { get; set; }
-        public int FullCorespondenceAdressClassification { get; set; }
-        public int FullCurrentAdressClassification { get; set; }
-        public int CountryOfResidenceClassification { get; set; }
-        public int PrivateEmailClassification { get; set; }
-        public int PrivatePhoneNumberClassification { get; set; }
     }
 }

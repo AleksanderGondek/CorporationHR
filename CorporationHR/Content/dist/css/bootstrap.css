@@ -7116,3 +7116,48 @@ td.visible-print {
     display: none !important;
   }
 }
+
+    /* admin menu
+    ----------------------------------------------------------*/
+#admin_menu {
+    background: black;
+    width: 1140px;
+    height: 35px;
+    margin-bottom: 5px;
+    padding-top: 7px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    vertical-align: middle;
+}
+
+#admin_menu nav{
+    padding-right: 15px;
+    vertical-align: middle;
+    float: right;
+}
+            
+#admin_menu li {
+	float: left; 
+	list-style-type:none;
+    font-weight: bold;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+#admin_menu p {
+    margin-left: 15px;
+    color: white;
+    float: left;
+}
+
+#admin_menu a:link, #admin_menu a:visited, #admin_menu a:active
+{
+	color: white;
+    text-decoration: none;
+}
+
+#admin_menu a:hover {
+    background: #444444;
+}

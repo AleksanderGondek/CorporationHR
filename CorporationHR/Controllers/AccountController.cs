@@ -5,6 +5,8 @@ using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using CorporationHR.Context;
+using CorporationHR.Repositories;
 using WebMatrix.WebData;
 using CorporationHR.Models;
 using CorporationHR.Helpers;
@@ -14,6 +16,13 @@ namespace CorporationHR.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private SimpleUserRepository _simpleUserRepo;
+
+        public AccountController(ICorporationHrDatabaseContext databaseContext)
+        {
+            _simpleUserRepo = new SimpleUserRepository(databaseContext);
+        }
+
         //
         // GET: /Account/Login
 
@@ -110,6 +119,13 @@ namespace CorporationHR.Controllers
                 : message == GeneralHelper.ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : "";
             ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.UserClearence = _simpleUserRepo.GetCurrentUserClearence(User.Identity.Name);
+            return View();
+        }
+
+        [Authorize(Roles = "Active")]
+        public ActionResult RequestClearence()
+        {
             return View();
         }
 

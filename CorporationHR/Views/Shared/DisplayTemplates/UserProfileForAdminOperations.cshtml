@@ -25,7 +25,7 @@
     <td>
         @Html.ActionLink("Edit", "EditUser", "Administration", new { id = Model.UserId }, null) |
         @Html.ActionLink("Details", "UserDetails", "Administration", new { id = Model.UserId }, null) |
-        @Html.ActionLink("Delete", "DeleteUser", "Administration", new { id = Model.UserId }, null)
+        @Html.ActionLink("Delete", "DeleteUser", "Administration", new { id = Model.UserId }, null) |
         @{
                 if (string.Equals(currentUserStatus,"Active"))
                 {

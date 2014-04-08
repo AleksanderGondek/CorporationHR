@@ -1,0 +1,36 @@
+﻿@using CorporationHR.Helpers
+@{
+    ViewBag.Title = "Request";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Request Higher Clearences</h2>
+</hgroup>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Upgrade your clearence form</legend>
+        <ol>
+            <li>
+                @Html.Label("Clearence desired")
+                @Html.DropDownList("Public", GeneralHelper.GetClearencesSelectList())
+            </li>
+            <li>
+                @Html.Label("Reasons for change")
+                @Html.TextBox("Reasons for change", null, new { style = "width:450px; height: 250px;" })
+        </ol>
+        <input type="submit" value="Request" />
+        <input type="button" value="Cancel"/>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

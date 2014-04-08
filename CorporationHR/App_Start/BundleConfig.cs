@@ -22,8 +22,7 @@ namespace CorporationHR
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                /*"~/Content/site.css"
-                ,*/"~/Content/dist/css/bootstrap.css"
+                "~/Content/dist/css/bootstrap.css"
                 ,"~/Content/dist/css/carousel.css"
                 ));
 
