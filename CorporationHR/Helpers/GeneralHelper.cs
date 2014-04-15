@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +11,7 @@ namespace CorporationHR.Helpers
     public static class GeneralHelper
     {
         public static Dictionary<int, string> Clearences = new Dictionary<int, string>();
+        public static Dictionary<int, string> ClearenceIdToColorMapping = new Dictionary<int, string>(); 
 
         public static IEnumerable<SelectListItem> GetClearencesSelectList()
         {

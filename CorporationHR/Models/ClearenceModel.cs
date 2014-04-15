@@ -14,6 +14,9 @@ namespace CorporationHR.Models
         public int ClearenceId { get; set; }
         public string ClearenceName { get; set; }
 
-        public virtual ICollection<UserProfile> UserProfiles { get; set; } 
+        public string ClearenceRgbColor { get; set; }
+
+        public virtual ICollection<UserProfile> UserProfiles { get; set; }
+        public virtual ICollection<Technology> Technologies { get; set; } 
     }
 }

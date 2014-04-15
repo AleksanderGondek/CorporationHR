@@ -17,9 +17,11 @@ namespace CorporationHR.Context
 
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<ClearenceModel> Clearences { get; set; }
+        public DbSet<Technology> Technologies { get; set; }
 
         IQueryable<UserProfile> ICorporationHrDatabaseContext.UserProfiles { get { return UserProfiles.AsQueryable(); } }
-        IQueryable<ClearenceModel> ICorporationHrDatabaseContext.Clearences { get { return Clearences.AsQueryable(); } } 
+        IQueryable<ClearenceModel> ICorporationHrDatabaseContext.Clearences { get { return Clearences.AsQueryable(); } }
+        IQueryable<Technology> ICorporationHrDatabaseContext.Technologies { get { return Technologies.AsQueryable(); } }
 
         public T Attach<T>(T entity) where T : class
         {

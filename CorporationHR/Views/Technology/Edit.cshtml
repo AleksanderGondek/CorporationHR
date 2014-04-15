@@ -1,0 +1,70 @@
+﻿@model CorporationHR.Models.Technology
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Technology</legend>
+
+        @Html.HiddenFor(model => model.TechnologyId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TechnologyInternalId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TechnologyInternalId)
+            @Html.ValidationMessageFor(model => model.TechnologyInternalId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ShortDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ShortDescription)
+            @Html.ValidationMessageFor(model => model.ShortDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FullDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FullDescription)
+            @Html.ValidationMessageFor(model => model.FullDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreatedOn)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreatedOn)
+            @Html.ValidationMessageFor(model => model.CreatedOn)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsCompleted)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsCompleted)
+            @Html.ValidationMessageFor(model => model.IsCompleted)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

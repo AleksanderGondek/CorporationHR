@@ -10,5 +10,7 @@ namespace CorporationHR.Context
     public class CorporationHrDatabaseContextScaffoldClass : DbContext
     {
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<ClearenceModel> Clearences { get; set; }
+        public DbSet<Technology> Technologies { get; set; }
     }
 }
