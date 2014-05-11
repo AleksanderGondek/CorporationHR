@@ -1,0 +1,60 @@
+﻿@model CorporationHR.Models.UseAndPlan
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>UseAndPlan</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Abstract)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Abstract)
+            @Html.ValidationMessageFor(model => model.Abstract)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Usages)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Usages)
+            @Html.ValidationMessageFor(model => model.Usages)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FuturePlans)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FuturePlans)
+            @Html.ValidationMessageFor(model => model.FuturePlans)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CompetitionPlans)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CompetitionPlans)
+            @Html.ValidationMessageFor(model => model.CompetitionPlans)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

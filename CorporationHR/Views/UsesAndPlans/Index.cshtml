@@ -1,0 +1,63 @@
+﻿@using CorporationHR.Helpers
+@model IEnumerable<CorporationHR.Models.UseAndPlan>
+
+@{
+    ViewBag.Title = "Index";
+    var canEdit = ClereancesHelper.Instance.CheckIfUserCanEditAndDeleteContent(User.Identity.Name, "UsesAndPlans");
+}
+
+<h2>Index</h2>
+
+@{
+    if (canEdit)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+}
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Abstract)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FuturePlans)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompetitionPlans)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abstract)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usages)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FuturePlans)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompetitionPlans)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.UseAndPlanId })
+            @{
+                if (canEdit)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id=item.UseAndPlanId })
+                    @Html.ActionLink("Delete", "Delete", new { id=item.UseAndPlanId })                    
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>

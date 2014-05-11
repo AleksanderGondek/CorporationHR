@@ -14,6 +14,7 @@ namespace CorporationHR.Context
         IQueryable<SecurityOfTable> SecurityOfTables { get; }
         IQueryable<Technology> Technologies { get; } //Db operations
         IQueryable<TechnologyAuthor> TechnologyAuthors { get; }
+        IQueryable<UseAndPlan> UseAndPlans { get; }
         T Attach<T>(T entity) where T : class;
         T Add<T>(T entity) where T : class;
         T Delete<T>(T entity) where T : class;

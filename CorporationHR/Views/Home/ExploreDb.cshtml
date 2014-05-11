@@ -134,4 +134,28 @@
             }
         </td>
     </tr>
+    
+    <tr>
+        <td>
+            Uses And Plans
+        </td>
+        <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("UsesAndPlans")">
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("UsesAndPlans")
+        </td>
+        <td>
+        <td>
+            @{
+                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "UsesAndPlans"))
+                {
+                    @Html.ActionLink("Add entry", "Create", "UsesAndPlans")
+                }
+            }
+            @{
+                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "UsesAndPlans"))
+                {
+                    @Html.ActionLink("View Table", "Index", "UsesAndPlans")
+                }
+            }
+        </td>
+    </tr>
 </table>

@@ -26,6 +26,7 @@ namespace CorporationHR.Context
             
             AddTechnologies(context);
             AddTechnologyAuthors(context);
+            AddUsesAndPlans(context);
 
             AddClearencesToUsers(context);
             AddClearencesToSecurityOfTables(context);
@@ -45,12 +46,14 @@ namespace CorporationHR.Context
             var clearenceModelsTable = new SecurityOfTable {TableName = "Clearence Models"};
             var technologiesModels = new SecurityOfTable {TableName = "Technologies"};
             var technologyAuthorsTable = new SecurityOfTable { TableName = "TechnologyAuthors" };
+            var usesAndPlansTable = new SecurityOfTable {TableName = "UsesAndPlans"};
 
             context.SecurityOfTables.Add(securityOfTablesTable);
             context.SecurityOfTables.Add(userProfilesTable);
             context.SecurityOfTables.Add(clearenceModelsTable);
             context.SecurityOfTables.Add(technologiesModels);
             context.SecurityOfTables.Add(technologyAuthorsTable);
+            context.SecurityOfTables.Add(usesAndPlansTable);
 
             context.SaveChanges();
         }
@@ -80,12 +83,31 @@ namespace CorporationHR.Context
                     case "TechnologyAuthors":
                         table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Confidential"));
                         break;
+                    case "UsesAndPlans":
+                        table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Secret"));
+                        break;
                     default:
                         break;;
                 }
 
                 context.SaveChanges();
             }
+        }
+
+        public void AddUsesAndPlans(CorporationHrDbContext context)
+        {
+            if (context.UseAndPlans.ToList().Any()) return;
+
+            var useAndPlan = new UseAndPlan
+                             {
+                                 Abstract = "Abstract",
+                                 CompetitionPlans = "Blah blah plans of competitions",
+                                 FuturePlans = "Some future plans",
+                                 Usages = "Usages, usages, usages",
+                             };
+
+            context.UseAndPlans.Add(useAndPlan);
+            context.SaveChanges();
         }
 
         public void AddTechnologyAuthors(CorporationHrDbContext context)
@@ -164,6 +186,7 @@ namespace CorporationHR.Context
             if (!WebSecurity.UserExists("userTest1")) { WebSecurity.CreateUserAndAccount("userTest1", "qwerty", new { FirstName = "test1", LastName = "testos1", Email = "test1@test.ts"}); }
             if (!WebSecurity.UserExists("userTest2")) { WebSecurity.CreateUserAndAccount("userTest2", "qwerty", new { FirstName = "test2", LastName = "testos2", Email = "test2@test.ts"}); }
             if (!WebSecurity.UserExists("userTest3")) { WebSecurity.CreateUserAndAccount("userTest3", "qwerty", new { FirstName = "test3", LastName = "testos3", Email = "test3@test.ts" });}
+            if (!WebSecurity.UserExists("userTest4")) { WebSecurity.CreateUserAndAccount("userTest4", "qwerty", new { FirstName = "test4", LastName = "testos4", Email = "test4@test.ts" }); }
         }
 
         private void AddClerences(CorporationHrDbContext context)
@@ -195,6 +218,7 @@ namespace CorporationHR.Context
             {
                 user.ClearenceModel = !user.UserName.Equals("admin") ? clearences.Single(x => x.ClearenceName.Equals("Normal")) : clearences.Single(x => x.ClearenceName.Equals("Public"));
                 if (user.UserName.Equals("userTest3")) { user.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Confidential")); }
+                if (user.UserName.Equals("userTest4")) { user.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Secret")); }
                 context.SaveChanges();
             }
         }
