@@ -11,6 +11,7 @@ namespace CorporationHR.Context
         //Db Columns
         IQueryable<UserProfile> UserProfiles { get; }
         IQueryable<ClearenceModel> Clearences { get; }
+        IQueryable<SecurityOfTable> SecurityOfTables { get; }
         IQueryable<Technology> Technologies { get; } //Db operations
         T Attach<T>(T entity) where T : class;
         T Add<T>(T entity) where T : class;

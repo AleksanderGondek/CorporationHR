@@ -19,15 +19,67 @@ namespace CorporationHR.Context
         protected override void Seed(CorporationHrDbContext context)
         {
             AttachSimpleAuth();
+            
             AddUsers();
             AddClerences(context);
+            AddSecurityOfTables(context);
+            
             AddTechnologies(context);
+
             AddClearencesToUsers(context);
+            AddClearencesToSecurityOfTables(context);
         }
 
         private void AttachSimpleAuth()
         {
             WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+        }
+
+        public void AddSecurityOfTables(CorporationHrDbContext context)
+        {
+            if (context.SecurityOfTables.ToList().Any()) return;
+
+            var securityOfTablesTable = new SecurityOfTable {TableName = "Security Of Tables"};
+            var userProfilesTable = new SecurityOfTable {TableName = "User Profiles"};
+            var clearenceModelsTable = new SecurityOfTable {TableName = "Clearence Models"};
+            var technologiesModels = new SecurityOfTable {TableName = "Technologies"};
+
+            context.SecurityOfTables.Add(securityOfTablesTable);
+            context.SecurityOfTables.Add(userProfilesTable);
+            context.SecurityOfTables.Add(clearenceModelsTable);
+            context.SecurityOfTables.Add(technologiesModels);
+
+            context.SaveChanges();
+        }
+
+        public void AddClearencesToSecurityOfTables(CorporationHrDbContext context)
+        {
+            var securityOfTables = context.SecurityOfTables.ToList();
+            var clearences = context.Clearences.ToList();
+            if (securityOfTables.Any(x => x.ClearenceModel != null)) return;
+
+            foreach (var table in securityOfTables)
+            {
+                switch (table.TableName)
+                {
+                    case "Security Of Tables":
+                        table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Public"));
+                        break;
+                    case "User Profiles":
+                        table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Public"));
+                        break;
+                    case "Clearence Models":
+                        table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Public"));
+                        break;
+                    case "Technologies":
+                        table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Public"));
+                        break;
+                    default:
+                        break;;
+                }
+
+                context.SaveChanges();
+            }
         }
 
         private void AddTechnologies(CorporationHrDbContext context)

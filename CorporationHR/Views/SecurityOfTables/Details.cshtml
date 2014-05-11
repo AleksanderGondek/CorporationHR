@@ -1,0 +1,22 @@
+﻿@model CorporationHR.Models.SecurityOfTable
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>SecurityOfTable</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TableName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TableName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TableId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
