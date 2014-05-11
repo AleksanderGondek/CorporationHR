@@ -62,7 +62,7 @@ namespace CorporationHR.Context
         }
 
         // GET: /Technologies/Edit/5
-        [CustomAuthorizeWrite(CallingController = "Technologies")]
+        [CustomAuthorizeEditDel(CallingController = "Technologies")]
         public ActionResult Edit(int id = 0)
         {
             Technology technology = _technologiesRepo.Find(id);
@@ -74,7 +74,7 @@ namespace CorporationHR.Context
         }
 
         // POST: /Technologies/Edit/5
-        [CustomAuthorizeWrite(CallingController = "Technologies")]
+        [CustomAuthorizeEditDel(CallingController = "Technologies")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Technology technology)
@@ -88,7 +88,7 @@ namespace CorporationHR.Context
         }
 
         // GET: /Technologies/Delete/5
-        [CustomAuthorizeWrite(CallingController = "Technologies")]
+        [CustomAuthorizeEditDel(CallingController = "Technologies")]
         public ActionResult Delete(int id = 0)
         {
             Technology technology = _technologiesRepo.Find(id);
@@ -100,7 +100,7 @@ namespace CorporationHR.Context
         }
 
         // POST: /Technologies/Delete/5
-        [CustomAuthorizeWrite(CallingController = "Technologies")]
+        [CustomAuthorizeEditDel(CallingController = "Technologies")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -1,0 +1,113 @@
+﻿@using CorporationHR.Helpers
+<h2>Exlpore our CorpoDb !</h2>
+
+<p>
+   Some generic text. Blah blah blah.
+</p>
+<table>
+    <tr>
+        <th>
+            Table Name
+        </th>
+        <th>
+            Table Clearance
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            Security Of Tables
+        </td>
+        <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("Security Of Tables")">
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("Security Of Tables")
+        </td>
+        <td>
+        <td>
+            @{
+                if (User.IsInRole("Administrator"))
+                {
+                    @Html.ActionLink("Add entry", "Create","SecurityOfTables")
+                }
+            }
+            @{
+                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "Security Of Tables"))
+                {
+                    @Html.ActionLink("View Table", "Index","SecurityOfTables")
+                }
+            }
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
+            User Profiles
+        </td>
+        <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("User Profiles")">
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("User Profiles")
+        </td>
+        <td>
+        <td>
+            @{
+                if (User.IsInRole("Administrator"))
+                {
+                    @Html.ActionLink("Add entry", "Create", "UserProfiles")
+                }
+            }
+            @{
+                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "User Profiles"))
+                {
+                    @Html.ActionLink("View Table", "Index", "UserProfiles")
+                }
+            }
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
+            Clearences
+        </td>
+        <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("Clearence Models")">
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("Clearence Models")
+        </td>
+        <td>
+        <td>
+            @{
+                if (User.IsInRole("Administrator"))
+                {
+                    @Html.ActionLink("Add entry", "Create", "Clereances")
+                }
+            }
+            @{
+                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "Clearence Models"))
+                {
+                    @Html.ActionLink("View Table", "Index", "Clereances")
+                }
+            }
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
+            Technologies
+        </td>
+        <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("Technologies")">
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("Technologies")
+        </td>
+        <td>
+        <td>
+            @{
+                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "Technologies"))
+                {
+                    @Html.ActionLink("Add entry", "Create", "Technologies")
+                }
+            }
+            @{
+                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "Technologies"))
+                {
+                    @Html.ActionLink("View Table", "Index", "Technologies")
+                }
+            }
+        </td>
+    </tr>
+</table>

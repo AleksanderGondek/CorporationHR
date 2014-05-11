@@ -1,7 +1,9 @@
-﻿@model CorporationHR.Models.ClearenceModel
+﻿@using CorporationHR.Helpers
+@model CorporationHR.Models.ClearenceModel
 
 @{
     ViewBag.Title = "Details";
+    var canEdit = Roles.IsUserInRole("Administrator");
 }
 
 <h2>Details</h2>
@@ -31,6 +33,11 @@
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.ClearenceId }) |
+    @{
+        if (canEdit)
+        {
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ClearenceId })
+        }
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>

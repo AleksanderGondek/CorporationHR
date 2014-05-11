@@ -30,5 +30,10 @@ namespace CorporationHR.Controllers
 
             return View();
         }
+
+        public ActionResult ExploreDb()
+        {
+            return View();
+        }
     }
 }

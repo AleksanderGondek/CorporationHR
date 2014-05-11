@@ -297,6 +297,7 @@
     <Content Include="Views\Technologies\Edit.cshtml" />
     <Content Include="Views\Technologies\Delete.cshtml" />
     <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\Home\ExploreDb.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

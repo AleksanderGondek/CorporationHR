@@ -1,14 +1,21 @@
-﻿@model IEnumerable<CorporationHR.Models.SecurityOfTable>
+﻿@using CorporationHR.Helpers
+@model IEnumerable<CorporationHR.Models.SecurityOfTable>
 
 @{
     ViewBag.Title = "Index";
+    var canEdit = Roles.IsUserInRole("Administrator");
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@{
+    if (canEdit)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+}
 <table>
     <tr>
         <th>
@@ -29,9 +36,14 @@
             @Html.DisplayFor(modelItem => item.ClearenceModel.ClearenceName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TableId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TableId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TableId })
+            @Html.ActionLink("Details", "Details", new { id = item.TableId })
+            @{
+                if (canEdit)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id=item.TableId })
+                    @Html.ActionLink("Delete", "Delete", new { id=item.TableId })
+                }
+            }
         </td>
     </tr>
 }

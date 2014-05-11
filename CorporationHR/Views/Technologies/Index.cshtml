@@ -1,14 +1,21 @@
-﻿@model IEnumerable<CorporationHR.Models.Technology>
+﻿@using CorporationHR.Helpers
+@model IEnumerable<CorporationHR.Models.Technology>
 
 @{
     ViewBag.Title = "Index";
+    var canEdit = ClereancesHelper.Instance.CheckIfUserCanEditAndDeleteContent(User.Identity.Name, "Technologies");
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@{
+    if (canEdit)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+}
 <table>
     <tr>
         <th>
@@ -47,9 +54,14 @@
             @Html.DisplayFor(modelItem => item.IsCompleted)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TechnologyId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TechnologyId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TechnologyId })
+            @Html.ActionLink("Details", "Details", new { id = item.TechnologyId })
+            @{
+                if (canEdit)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id=item.TechnologyId })
+                    @Html.ActionLink("Delete", "Delete", new { id=item.TechnologyId })
+                }
+            }
         </td>
     </tr>
 }

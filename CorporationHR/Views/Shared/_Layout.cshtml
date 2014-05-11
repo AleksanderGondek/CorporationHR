@@ -49,6 +49,7 @@
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                             @if (Request.IsAuthenticated)
                             {
+                                <li>@Html.ActionLink("Explore CorpoDb", "ExploreDb", "Home")</li>
                                 <li>@Html.ActionLink("Your account", "Manage", "Account")</li>
                             }
                         </ul>
@@ -78,7 +79,7 @@
 
         <footer>
             <p class="pull-right2"><a href="#">Back to top</a></p>
-            <p class="footer2">&copy; @DateTime.Now.Year - CorporationTech &middot; @Html.ActionLink("Home", "Index", "Home")  &middot; @Html.ActionLink("About", "About", "Home")  &middot; @Html.ActionLink("Contact", "Contact", "Home")
+            <p class="footer2">&copy; @DateTime.Now.Year - CorporationTech &middot; @Html.ActionLink("Home", "Index", "Home")  &middot; @Html.ActionLink("About", "About", "Home")  &middot; @Html.ActionLink("Explore CorpoDb", "ExploreDb", "Home")  &middot; @Html.ActionLink("Contact", "Contact", "Home")
             <p class="confidentialnote"><span class="blueish">CorporationHR Confidential</span><strong> Warning:</strong> Unauthorized access to this website is strictly prohibited and is a crime under international law. Violators will be prosecuted. System use is only for authorized purposes. Access and usage by any person or entity implies their consent to monitoring.</p>
         </footer>
         
