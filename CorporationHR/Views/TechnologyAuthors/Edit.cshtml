@@ -1,0 +1,118 @@
+﻿@model CorporationHR.Models.TechnologyAuthor
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>TechnologyAuthor</legend>
+
+        @Html.HiddenFor(model => model.TechnologyAuthorId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CorpoId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CorpoId)
+            @Html.ValidationMessageFor(model => model.CorpoId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SocialSecurityNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SocialSecurityNumber)
+            @Html.ValidationMessageFor(model => model.SocialSecurityNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Middlename)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Middlename)
+            @Html.ValidationMessageFor(model => model.Middlename)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Familyname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Familyname)
+            @Html.ValidationMessageFor(model => model.Familyname)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CorporatePhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CorporatePhoneNumber)
+            @Html.ValidationMessageFor(model => model.CorporatePhoneNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CorporateEmail)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CorporateEmail)
+            @Html.ValidationMessageFor(model => model.CorporateEmail)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FullCorespondenceAdress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FullCorespondenceAdress)
+            @Html.ValidationMessageFor(model => model.FullCorespondenceAdress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FullCurrentAdress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FullCurrentAdress)
+            @Html.ValidationMessageFor(model => model.FullCurrentAdress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PrivateEmail)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PrivateEmail)
+            @Html.ValidationMessageFor(model => model.PrivateEmail)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PrivatePhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PrivatePhoneNumber)
+            @Html.ValidationMessageFor(model => model.PrivatePhoneNumber)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

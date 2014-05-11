@@ -25,6 +25,7 @@ namespace CorporationHR.Context
             AddSecurityOfTables(context);
             
             AddTechnologies(context);
+            AddTechnologyAuthors(context);
 
             AddClearencesToUsers(context);
             AddClearencesToSecurityOfTables(context);
@@ -43,11 +44,13 @@ namespace CorporationHR.Context
             var userProfilesTable = new SecurityOfTable {TableName = "User Profiles"};
             var clearenceModelsTable = new SecurityOfTable {TableName = "Clearence Models"};
             var technologiesModels = new SecurityOfTable {TableName = "Technologies"};
+            var technologyAuthorsTable = new SecurityOfTable { TableName = "TechnologyAuthors" };
 
             context.SecurityOfTables.Add(securityOfTablesTable);
             context.SecurityOfTables.Add(userProfilesTable);
             context.SecurityOfTables.Add(clearenceModelsTable);
             context.SecurityOfTables.Add(technologiesModels);
+            context.SecurityOfTables.Add(technologyAuthorsTable);
 
             context.SaveChanges();
         }
@@ -56,7 +59,7 @@ namespace CorporationHR.Context
         {
             var securityOfTables = context.SecurityOfTables.ToList();
             var clearences = context.Clearences.ToList();
-            //if (securityOfTables.All(x => x.ClearenceModel != null)) return;
+            //if (securityOfTables.All(x => x.ClearenceModel != null)) return; //TODO: later we can uncomment this
 
             foreach (var table in securityOfTables)
             {
@@ -72,6 +75,9 @@ namespace CorporationHR.Context
                         table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Public"));
                         break;
                     case "Technologies":
+                        table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Normal"));
+                        break;
+                    case "TechnologyAuthors":
                         table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Confidential"));
                         break;
                     default:
@@ -80,6 +86,29 @@ namespace CorporationHR.Context
 
                 context.SaveChanges();
             }
+        }
+
+        public void AddTechnologyAuthors(CorporationHrDbContext context)
+        {
+            if (context.TechnologyAuthors.ToList().Any()) return;
+
+            var employeeOne = new TechnologyAuthor
+                              {
+                                  CorpoId = "Some corpo Id",
+                                  SocialSecurityNumber = "Some social security number",
+                                  FirstName = "First name simply",
+                                  Middlename = "Some middle name",
+                                  Familyname = "Family name this is",
+                                  CorporateEmail = "corpo@email.corpo.eu",
+                                  CorporatePhoneNumber = "+48000000011",
+                                  FullCorespondenceAdress = "This is full corespondence adress",
+                                  FullCurrentAdress = "This is full current adress",
+                                  PrivateEmail = "private@email.something.com",
+                                  PrivatePhoneNumber = "+48000000000"
+                              };
+
+            context.TechnologyAuthors.Add(employeeOne);
+            context.SaveChanges();
         }
 
         private void AddTechnologies(CorporationHrDbContext context)
@@ -162,13 +191,9 @@ namespace CorporationHR.Context
             var clearences = context.Clearences.ToList();
             if (!users.Any() || !clearences.Any()) return;
 
-            if (!Roles.RoleExists("Administrator")) { Roles.CreateRole("Administrator"); }
-
             foreach (var user in users)
             {
-                if (user.UserName.Equals("admin") && Roles.IsUserInRole(user.UserName, "Administrator")) Roles.AddUserToRole(user.UserName, "Administrator");
-
-                user.ClearenceModel = !user.UserName.Equals("admin") ? clearences.Single(x => x.ClearenceName.Equals("Normal")) : clearences.Single(x => x.ClearenceName.Equals("Top Secret"));
+                user.ClearenceModel = !user.UserName.Equals("admin") ? clearences.Single(x => x.ClearenceName.Equals("Normal")) : clearences.Single(x => x.ClearenceName.Equals("Public"));
                 if (user.UserName.Equals("userTest3")) { user.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Confidential")); }
                 context.SaveChanges();
             }

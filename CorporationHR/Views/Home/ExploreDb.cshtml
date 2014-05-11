@@ -25,7 +25,7 @@
         <td>
         <td>
             @{
-                if (User.IsInRole("Administrator"))
+                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "Security Of Tables"))
                 {
                     @Html.ActionLink("Add entry", "Create","SecurityOfTables")
                 }
@@ -49,7 +49,7 @@
         <td>
         <td>
             @{
-                if (User.IsInRole("Administrator"))
+                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "User Profiles"))
                 {
                     @Html.ActionLink("Add entry", "Create", "UserProfiles")
                 }
@@ -73,7 +73,7 @@
         <td>
         <td>
             @{
-                if (User.IsInRole("Administrator"))
+                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "Clearence Models"))
                 {
                     @Html.ActionLink("Add entry", "Create", "Clereances")
                 }
@@ -106,6 +106,30 @@
                 if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "Technologies"))
                 {
                     @Html.ActionLink("View Table", "Index", "Technologies")
+                }
+            }
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Technology Authors
+        </td>
+        <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("TechnologyAuthors")">
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("TechnologyAuthors")
+        </td>
+        <td>
+        <td>
+            @{
+                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "TechnologyAuthors"))
+                {
+                    @Html.ActionLink("Add entry", "Create", "TechnologyAuthors")
+                }
+            }
+            @{
+                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "TechnologyAuthors"))
+                {
+                    @Html.ActionLink("View Table", "Index", "TechnologyAuthors")
                 }
             }
         </td>

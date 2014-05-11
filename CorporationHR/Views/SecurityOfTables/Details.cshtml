@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Details";
-    var canEdit = Roles.IsUserInRole("Administrator");
+    var canEdit = ClereancesHelper.Instance.CheckIfUserCanEditAndDeleteContent(User.Identity.Name, "Security Of Tables");
 }
 
 <h2>Details</h2>

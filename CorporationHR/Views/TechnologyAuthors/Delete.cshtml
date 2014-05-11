@@ -1,0 +1,96 @@
+﻿@model CorporationHR.Models.TechnologyAuthor
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>TechnologyAuthor</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CorpoId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CorpoId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SocialSecurityNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SocialSecurityNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Middlename)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Middlename)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Familyname)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Familyname)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CorporatePhoneNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CorporatePhoneNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CorporateEmail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CorporateEmail)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullCorespondenceAdress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullCorespondenceAdress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullCurrentAdress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullCurrentAdress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PrivateEmail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrivateEmail)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PrivatePhoneNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrivatePhoneNumber)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

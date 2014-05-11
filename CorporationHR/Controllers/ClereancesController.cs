@@ -46,17 +46,15 @@ namespace CorporationHR.Controllers
         [CustomAuthorizeWrite(CallingController = "Clearence Models")]
         public ActionResult Create()
         {
-            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             return View();
         }
 
         // POST: /Clereances/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CustomAuthorizeWrite(CallingController = "Clearence Models")]
+        [CustomAuthorizeEditDel(CallingController = "Clearence Models")]
         public ActionResult Create(ClearenceModel clearencemodel)
         {
-            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             if (ModelState.IsValid)
             {
                 _clearencesRepo.Save(clearencemodel);
@@ -67,10 +65,9 @@ namespace CorporationHR.Controllers
         }
 
         // GET: /Clereances/Edit/5
-        [CustomAuthorizeWrite(CallingController = "Clearence Models")]
+        [CustomAuthorizeEditDel(CallingController = "Clearence Models")]
         public ActionResult Edit(int id = 0)
         {
-            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             ClearenceModel clearencemodel = _clearencesRepo.Find(id);
             if (clearencemodel == null)
             {
@@ -82,10 +79,9 @@ namespace CorporationHR.Controllers
         // POST: /Clereances/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CustomAuthorizeWrite(CallingController = "Clearence Models")]
+        [CustomAuthorizeEditDel(CallingController = "Clearence Models")]
         public ActionResult Edit(ClearenceModel clearencemodel)
         {
-            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             if (ModelState.IsValid)
             {
                 _clearencesRepo.Update(clearencemodel);
@@ -95,10 +91,9 @@ namespace CorporationHR.Controllers
         }
 
         // GET: /Clereances/Delete/5
-        [CustomAuthorizeWrite(CallingController = "Clearence Models")]
+        [CustomAuthorizeEditDel(CallingController = "Clearence Models")]
         public ActionResult Delete(int id = 0)
         {
-            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             ClearenceModel clearencemodel = _clearencesRepo.Find(id);
             if (clearencemodel == null)
             {
@@ -108,12 +103,11 @@ namespace CorporationHR.Controllers
         }
 
         // POST: /Clereances/Delete/5
-        [CustomAuthorizeWrite(CallingController = "Clearence Models")]
+        [CustomAuthorizeEditDel(CallingController = "Clearence Models")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             ClearenceModel clearencemodel = _clearencesRepo.Find(id);
             _clearencesRepo.Remove(clearencemodel);
             return RedirectToAction("Index");

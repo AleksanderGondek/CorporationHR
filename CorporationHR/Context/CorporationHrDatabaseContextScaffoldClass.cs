@@ -13,5 +13,6 @@ namespace CorporationHR.Context
         public DbSet<ClearenceModel> Clearences { get; set; }
         public DbSet<SecurityOfTable> SecurityOfTables { get; set; }
         public DbSet<Technology> Technologies { get; set; }
+        public DbSet<TechnologyAuthor> TechnologyAuthors { get; set; }
     }
 }

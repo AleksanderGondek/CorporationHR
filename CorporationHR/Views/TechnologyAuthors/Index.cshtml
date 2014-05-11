@@ -1,0 +1,105 @@
+﻿@using CorporationHR.Helpers
+@model IEnumerable<CorporationHR.Models.TechnologyAuthor>
+
+@{
+    ViewBag.Title = "Index";
+    var canEdit = ClereancesHelper.Instance.CheckIfUserCanEditAndDeleteContent(User.Identity.Name, "TechnologyAuthors");
+}
+
+<h2>Index</h2>
+
+@{
+    if (canEdit)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+}
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CorpoId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SocialSecurityNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Middlename)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Familyname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorporatePhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorporateEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullCorespondenceAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullCurrentAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrivateEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrivatePhoneNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorpoId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SocialSecurityNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Middlename)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Familyname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorporatePhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorporateEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullCorespondenceAdress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullCurrentAdress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrivateEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrivatePhoneNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.TechnologyAuthorId })
+            @{
+                if (canEdit)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TechnologyAuthorId })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TechnologyAuthorId })                    
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>

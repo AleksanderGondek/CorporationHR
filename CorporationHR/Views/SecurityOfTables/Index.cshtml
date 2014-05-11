@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Index";
-    var canEdit = Roles.IsUserInRole("Administrator");
+    var canEdit = ClereancesHelper.Instance.CheckIfUserCanEditAndDeleteContent(User.Identity.Name, "Security Of Tables");
 }
 
 <h2>Index</h2>
@@ -32,7 +32,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.TableName)
         </td>
-        <td style="background-color: @item.ClearenceModel.ClearenceRgbColor; color: #000000">
+        <td style="background-color: @item.ClearenceModel.ClearenceRgbColor;">
             @Html.DisplayFor(modelItem => item.ClearenceModel.ClearenceName)
         </td>
         <td>

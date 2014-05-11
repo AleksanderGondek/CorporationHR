@@ -46,7 +46,6 @@ namespace CorporationHR.Controllers
         [CustomAuthorizeWrite(CallingController = "User Profiles")]
         public ActionResult Create()
         {
-            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             return View();
         }
 
@@ -56,7 +55,6 @@ namespace CorporationHR.Controllers
         [CustomAuthorizeWrite(CallingController = "User Profiles")]
         public ActionResult Create(UserProfile userprofile)
         {
-            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             if (ModelState.IsValid)
             {
                 _userProfilesRepo.Save(userprofile);
@@ -67,10 +65,9 @@ namespace CorporationHR.Controllers
         }
 
         // GET: /UserProfiles/Edit/5
-        [CustomAuthorizeWrite(CallingController = "User Profiles")]
+        [CustomAuthorizeEditDel(CallingController = "User Profiles")]
         public ActionResult Edit(int id = 0)
         {
-            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             UserProfile userprofile = _userProfilesRepo.Find(id);
             if (userprofile == null)
             {
@@ -82,10 +79,9 @@ namespace CorporationHR.Controllers
         // POST: /UserProfiles/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CustomAuthorizeWrite(CallingController = "User Profiles")]
+        [CustomAuthorizeEditDel(CallingController = "User Profiles")]
         public ActionResult Edit(UserProfile userprofile)
         {
-            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             if (ModelState.IsValid)
             {
                 _userProfilesRepo.Update(userprofile);
@@ -95,10 +91,9 @@ namespace CorporationHR.Controllers
         }
 
         // GET: /UserProfiles/Delete/5
-        [CustomAuthorizeWrite(CallingController = "User Profiles")]
+        [CustomAuthorizeEditDel(CallingController = "User Profiles")]
         public ActionResult Delete(int id = 0)
         {
-            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             UserProfile userprofile = _userProfilesRepo.Find(id);
             if (userprofile == null)
             {
@@ -110,10 +105,9 @@ namespace CorporationHR.Controllers
         // POST: /UserProfiles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [CustomAuthorizeWrite(CallingController = "User Profiles")]
+        [CustomAuthorizeEditDel(CallingController = "User Profiles")]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             UserProfile userprofile = _userProfilesRepo.Find(id);
             _userProfilesRepo.Remove(userprofile);
             return RedirectToAction("Index");

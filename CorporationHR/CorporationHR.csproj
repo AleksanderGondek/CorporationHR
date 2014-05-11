@@ -166,6 +166,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SecurityOfTablesController.cs" />
+    <Compile Include="Controllers\TechnologyAuthorsController.cs" />
     <Compile Include="Controllers\UserProfilesController.cs" />
     <Compile Include="CustomAttribute\CustomAuthorizes.cs" />
     <Compile Include="Global.asax.cs">
@@ -175,7 +176,7 @@
     <Compile Include="Helpers\GeneralHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ClearenceModel.cs" />
-    <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\TechnologyAuthorModel.cs" />
     <Compile Include="Models\SecurityOfTable.cs" />
     <Compile Include="Models\Technology.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Repositories\SecurityOfTablesRepository.cs" />
     <Compile Include="Repositories\SelfManageUserRepository.cs" />
     <Compile Include="Repositories\TechnologiesRepository.cs" />
+    <Compile Include="Repositories\TechnologyAuthorsRepository.cs" />
     <Compile Include="Repositories\UserProfilesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +300,11 @@
     <Content Include="Views\Technologies\Delete.cshtml" />
     <Content Include="Views\Error\Forbidden.cshtml" />
     <Content Include="Views\Home\ExploreDb.cshtml" />
+    <Content Include="Views\TechnologyAuthors\Index.cshtml" />
+    <Content Include="Views\TechnologyAuthors\Details.cshtml" />
+    <Content Include="Views\TechnologyAuthors\Create.cshtml" />
+    <Content Include="Views\TechnologyAuthors\Edit.cshtml" />
+    <Content Include="Views\TechnologyAuthors\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

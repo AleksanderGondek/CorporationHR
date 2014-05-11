@@ -1,0 +1,99 @@
+﻿@using CorporationHR.Helpers
+@model CorporationHR.Models.TechnologyAuthor
+
+@{
+    ViewBag.Title = "Details";
+    var canEdit = ClereancesHelper.Instance.CheckIfUserCanEditAndDeleteContent(User.Identity.Name, "TechnologyAuthors");    
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>TechnologyAuthor</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CorpoId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CorpoId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SocialSecurityNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SocialSecurityNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Middlename)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Middlename)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Familyname)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Familyname)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CorporatePhoneNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CorporatePhoneNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CorporateEmail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CorporateEmail)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullCorespondenceAdress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullCorespondenceAdress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullCurrentAdress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullCurrentAdress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PrivateEmail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrivateEmail)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PrivatePhoneNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrivatePhoneNumber)
+    </div>
+</fieldset>
+<p>
+    @{
+        if (canEdit)
+        {
+            @Html.ActionLink("Edit", "Edit", new { id=Model.TechnologyAuthorId })
+        }
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>
