@@ -27,6 +27,7 @@ namespace CorporationHR.Context
             AddTechnologies(context);
             AddTechnologyAuthors(context);
             AddUsesAndPlans(context);
+            AddPatents(context);
 
             AddClearencesToUsers(context);
             AddClearencesToSecurityOfTables(context);
@@ -47,6 +48,7 @@ namespace CorporationHR.Context
             var technologiesModels = new SecurityOfTable {TableName = "Technologies"};
             var technologyAuthorsTable = new SecurityOfTable { TableName = "TechnologyAuthors" };
             var usesAndPlansTable = new SecurityOfTable {TableName = "UsesAndPlans"};
+            var patentsTable = new SecurityOfTable {TableName = "Patents"};
 
             context.SecurityOfTables.Add(securityOfTablesTable);
             context.SecurityOfTables.Add(userProfilesTable);
@@ -54,6 +56,7 @@ namespace CorporationHR.Context
             context.SecurityOfTables.Add(technologiesModels);
             context.SecurityOfTables.Add(technologyAuthorsTable);
             context.SecurityOfTables.Add(usesAndPlansTable);
+            context.SecurityOfTables.Add(patentsTable);
 
             context.SaveChanges();
         }
@@ -86,12 +89,29 @@ namespace CorporationHR.Context
                     case "UsesAndPlans":
                         table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Secret"));
                         break;
+                    case "Patents":
+                        table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Top Secret"));
+                        break;
                     default:
                         break;;
                 }
 
                 context.SaveChanges();
             }
+        }
+
+        public void AddPatents(CorporationHrDbContext context)
+        {
+            if (context.Patents.ToList().Any()) return;
+
+            var newPatent = new Patent()
+                            {
+                                PatentName = "Patent example",
+                                PatentText = "Patent description!"
+                            };
+
+            context.Patents.Add(newPatent);
+            context.SaveChanges();
         }
 
         public void AddUsesAndPlans(CorporationHrDbContext context)
@@ -187,6 +207,7 @@ namespace CorporationHR.Context
             if (!WebSecurity.UserExists("userTest2")) { WebSecurity.CreateUserAndAccount("userTest2", "qwerty", new { FirstName = "test2", LastName = "testos2", Email = "test2@test.ts"}); }
             if (!WebSecurity.UserExists("userTest3")) { WebSecurity.CreateUserAndAccount("userTest3", "qwerty", new { FirstName = "test3", LastName = "testos3", Email = "test3@test.ts" });}
             if (!WebSecurity.UserExists("userTest4")) { WebSecurity.CreateUserAndAccount("userTest4", "qwerty", new { FirstName = "test4", LastName = "testos4", Email = "test4@test.ts" }); }
+            if (!WebSecurity.UserExists("userTest5")) { WebSecurity.CreateUserAndAccount("userTest5", "qwerty", new { FirstName = "test5", LastName = "testos5", Email = "test5@test.ts" }); }
         }
 
         private void AddClerences(CorporationHrDbContext context)
@@ -219,6 +240,7 @@ namespace CorporationHR.Context
                 user.ClearenceModel = !user.UserName.Equals("admin") ? clearences.Single(x => x.ClearenceName.Equals("Normal")) : clearences.Single(x => x.ClearenceName.Equals("Public"));
                 if (user.UserName.Equals("userTest3")) { user.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Confidential")); }
                 if (user.UserName.Equals("userTest4")) { user.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Secret")); }
+                if (user.UserName.Equals("userTest5")) { user.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Top Secret")); }
                 context.SaveChanges();
             }
         }

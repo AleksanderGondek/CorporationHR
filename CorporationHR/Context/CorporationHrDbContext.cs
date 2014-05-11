@@ -21,13 +21,15 @@ namespace CorporationHR.Context
         public DbSet<Technology> Technologies { get; set; }
         public DbSet<TechnologyAuthor> TechnologyAuthors { get; set; }
         public DbSet<UseAndPlan> UseAndPlans { get; set; }
+        public DbSet<Patent> Patents { get; set; }
 
         IQueryable<UserProfile> ICorporationHrDatabaseContext.UserProfiles { get { return UserProfiles.AsQueryable(); } }
         IQueryable<ClearenceModel> ICorporationHrDatabaseContext.Clearences { get { return Clearences.AsQueryable(); } }
         IQueryable<SecurityOfTable> ICorporationHrDatabaseContext.SecurityOfTables { get { return SecurityOfTables.AsQueryable(); } }
         IQueryable<Technology> ICorporationHrDatabaseContext.Technologies { get { return Technologies.AsQueryable(); } }
         IQueryable<TechnologyAuthor> ICorporationHrDatabaseContext.TechnologyAuthors { get { return TechnologyAuthors.AsQueryable(); } }
-        IQueryable<UseAndPlan> ICorporationHrDatabaseContext.UseAndPlans { get { return UseAndPlans.AsQueryable(); } } 
+        IQueryable<UseAndPlan> ICorporationHrDatabaseContext.UseAndPlans { get { return UseAndPlans.AsQueryable(); } }
+        IQueryable<Patent> ICorporationHrDatabaseContext.Patents { get { return Patents.AsQueryable(); } }
 
         public T Attach<T>(T entity) where T : class
         {

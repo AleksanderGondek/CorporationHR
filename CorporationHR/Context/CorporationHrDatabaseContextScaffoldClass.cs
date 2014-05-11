@@ -15,5 +15,6 @@ namespace CorporationHR.Context
         public DbSet<Technology> Technologies { get; set; }
         public DbSet<TechnologyAuthor> TechnologyAuthors { get; set; }
         public DbSet<UseAndPlan> UseAndPlans { get; set; }
+        public DbSet<Patent> Patents { get; set; }
     }
 }

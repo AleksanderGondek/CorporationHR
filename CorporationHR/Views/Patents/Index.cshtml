@@ -1,0 +1,51 @@
+﻿@using CorporationHR.Helpers
+@model IEnumerable<CorporationHR.Models.Patent>
+
+@{
+    ViewBag.Title = "Index";
+    var canEdit = ClereancesHelper.Instance.CheckIfUserCanEditAndDeleteContent(User.Identity.Name, "Patents");
+}
+
+<h2>Index</h2>
+
+@{
+    if (canEdit)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+}
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PatentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PatentText)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatentText)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.PatentId })
+            @{
+                if (canEdit)
+                {
+                     @Html.ActionLink("Edit", "Edit", new { id = item.PatentId })
+                     @Html.ActionLink("Delete", "Delete", new { id = item.PatentId })
+                 }
+            }
+        </td>
+    </tr>
+}
+
+</table>
