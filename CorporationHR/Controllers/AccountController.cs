@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Transactions;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using CorporationHR.Context;
@@ -16,16 +12,14 @@ namespace CorporationHR.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private SimpleUserRepository _simpleUserRepo;
+        private readonly SelfManageUserRepository _selfManageUserRepo;
 
         public AccountController(ICorporationHrDatabaseContext databaseContext)
         {
-            _simpleUserRepo = new SimpleUserRepository(databaseContext);
+            _selfManageUserRepo = new SelfManageUserRepository(databaseContext);
         }
 
-        //
         // GET: /Account/Login
-
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -33,9 +27,7 @@ namespace CorporationHR.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Login
-
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -43,7 +35,7 @@ namespace CorporationHR.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                return RedirectToAction("Index", "Technology");
+                return RedirectToAction("Index", "Home");
             }
 
             // If we got this far, something failed, redisplay form
@@ -51,30 +43,23 @@ namespace CorporationHR.Controllers
             return View(model);
         }
 
-        //
         // POST: /Account/LogOff
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             WebSecurity.Logout();
-
             return RedirectToAction("Index", "Home");
         }
 
-        //
         // GET: /Account/Register
-
         [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
-        //
         // POST: /Account/Register
-
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -87,7 +72,7 @@ namespace CorporationHR.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { FirstName = model.FirstName, LastName = model.LastName, Email = model.Email });
                     Roles.AddUserToRole(model.UserName, "Disabled");
-                    return RedirectToAction("Registered");
+                    return RedirectToAction("Manage", "Account");
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -99,51 +84,30 @@ namespace CorporationHR.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/Registered
-
-        [Authorize(Roles = "Disabled")]
-        public ActionResult Registered()
-        {
-            return View();
-        }
-
-        //
         // GET: /Account/Manage
-
-        [Authorize(Roles = "Active")]
         public ActionResult Manage(GeneralHelper.ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == GeneralHelper.ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == GeneralHelper.ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : "";
+
             ViewBag.ReturnUrl = Url.Action("Manage");
-            ViewBag.UserClearenceName = _simpleUserRepo.GetClearenceNameFromUserName(User.Identity.Name);
-            ViewBag.UserClearenceRgbColor = _simpleUserRepo.GetClearenceColorFromUserName(User.Identity.Name);
-            ViewBag.UserClearence = _simpleUserRepo.GetCurrentUserClearence(User.Identity.Name);
+            ViewBag.UserClearenceName = _selfManageUserRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _selfManageUserRepo.GetClearenceColorFromUserName(User.Identity.Name);
+
             return View();
         }
 
-        [Authorize(Roles = "Active")]
-        public ActionResult RequestClearence()
-        {
-            ViewBag.UserClearenceName = _simpleUserRepo.GetClearenceNameFromUserName(User.Identity.Name);
-            ViewBag.UserClearenceRgbColor = _simpleUserRepo.GetClearenceColorFromUserName(User.Identity.Name);
-            return View();
-        }
-
-        //
         // POST: /Account/Manage
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Active")]
         public ActionResult Manage(UserPasswordModel model)
         {
-            ViewBag.UserClearenceName = _simpleUserRepo.GetClearenceNameFromUserName(User.Identity.Name);
-            ViewBag.UserClearenceRgbColor = _simpleUserRepo.GetClearenceColorFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceName = _selfManageUserRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _selfManageUserRepo.GetClearenceColorFromUserName(User.Identity.Name);
             ViewBag.ReturnUrl = Url.Action("Manage");
+
             if (ModelState.IsValid)
             {
                 bool changePasswordSucceeded;
@@ -165,16 +129,6 @@ namespace CorporationHR.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
-
-        private ActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            
-            return RedirectToAction("Index", "Home");
         }
     }
 }

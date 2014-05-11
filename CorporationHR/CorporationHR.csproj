@@ -160,9 +160,7 @@
     <Compile Include="Context\CorporationHrDbContext.cs" />
     <Compile Include="Context\DatabaseInitializator.cs" />
     <Compile Include="Context\ICorporationHrDatabaseContext.cs" />
-    <Compile Include="Controllers\TechnologyController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -174,9 +172,7 @@
     <Compile Include="Models\Technology.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\RepositoryPackage.cs" />
-    <Compile Include="Repositories\SimpleUserRepository.cs" />
-    <Compile Include="Repositories\SystemUsersRepository.cs" />
-    <Compile Include="Repositories\TechnologyRepository.cs" />
+    <Compile Include="Repositories\SelfManageUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\dist\css\bootstrap.css" />
@@ -265,21 +261,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Administration\ManageUsers.cshtml" />
-    <Content Include="Views\Administration\UserDetails.cshtml" />
-    <Content Include="Views\Administration\EditUser.cshtml" />
-    <Content Include="Views\Administration\DeleteUser.cshtml" />
-    <Content Include="Views\Administration\CreateUser.cshtml" />
-    <Content Include="Views\Account\Registered.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\UserProfileForAdminOperations.cshtml" />
-    <Content Include="Views\Shared\_AdminPanel.cshtml" />
     <Content Include="Views\Home\_HomeLayout.cshtml" />
-    <Content Include="Views\Account\RequestClearence.cshtml" />
-    <Content Include="Views\Technology\Index.cshtml" />
-    <Content Include="Views\Technology\Details.cshtml" />
-    <Content Include="Views\Technology\Create.cshtml" />
-    <Content Include="Views\Technology\Edit.cshtml" />
-    <Content Include="Views\Technology\Delete.cshtml" />
     <Content Include="Views\Shared\_ClearanceDisplay.cshtml" />
   </ItemGroup>
   <ItemGroup>

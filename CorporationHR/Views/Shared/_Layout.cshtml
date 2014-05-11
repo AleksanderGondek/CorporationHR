@@ -27,7 +27,6 @@
     <div id="pointer4"></div>
     <!-- Recent Change End -->
     <div class="navbar-wrapper">
-        @Html.Partial("_AdminPanel")
         @Html.Partial("_ClearanceDisplay")
         <div class="container">
 
@@ -48,7 +47,6 @@
                             <li class ="active">@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Browse Tech", "Index", "Technology")</li>
                             @if (Request.IsAuthenticated)
                             {
                                 <li>@Html.ActionLink("Your account", "Manage", "Account")</li>

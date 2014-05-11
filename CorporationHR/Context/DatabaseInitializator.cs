@@ -23,7 +23,6 @@ namespace CorporationHR.Context
             AddClerences(context);
             AddTechnologies(context);
             AddClearencesToUsers(context);
-            AddClearancesToTechs(context);
         }
 
         private void AttachSimpleAuth()
@@ -78,47 +77,18 @@ namespace CorporationHR.Context
             context.SaveChanges();
         }
 
-        private void AddClearancesToTechs(CorporationHrDbContext context)
-        {
-            var techs = context.Technologies.ToList();
-            var clearences = context.Clearences.ToList();
-            if (!techs.Any() || !clearences.Any()) return;
-
-            foreach (var tech in techs)
-            {
-                if (tech.ShortDescription.ToLower().Contains("public")) { tech.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Public")); }
-                else if (tech.ShortDescription.ToLower().Contains("confidential")) { tech.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Confidential")); }
-                else if (tech.ShortDescription.ToLower().Contains("topsecret")) { tech.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Top Secret")); }
-                else if (tech.ShortDescription.ToLower().Contains("secret")) { tech.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Secret")); }
-                context.SaveChanges();
-            }
-        }
-
         private void AddUsers()
         {
-            var roles = (SimpleRoleProvider) Roles.Provider;
-            if (!roles.RoleExists("Active")) roles.CreateRole("Active");
-            if (!roles.RoleExists("Disabled")) roles.CreateRole("Disabled");
-            
             if (!WebSecurity.UserExists("admin")) { WebSecurity.CreateUserAndAccount("admin", "test", new { FirstName = "Admin", LastName = "Admin", Email = "admin@admin.ad"}); }
             if (!WebSecurity.UserExists("userTest1")) { WebSecurity.CreateUserAndAccount("userTest1", "qwerty", new { FirstName = "test1", LastName = "testos1", Email = "test1@test.ts"}); }
             if (!WebSecurity.UserExists("userTest2")) { WebSecurity.CreateUserAndAccount("userTest2", "qwerty", new { FirstName = "test2", LastName = "testos2", Email = "test2@test.ts"}); }
-            if (!WebSecurity.UserExists("userTest3"))
-            {
-                WebSecurity.CreateUserAndAccount("userTest3", "qwerty", new { FirstName = "test3", LastName = "testos3", Email = "test3@test.ts" });
-                roles.AddUsersToRoles(new[] { "admin", "userTest1", "userTest2", "userTest3" }, new[] { "Active" });
-            }
-
+            if (!WebSecurity.UserExists("userTest3")) { WebSecurity.CreateUserAndAccount("userTest3", "qwerty", new { FirstName = "test3", LastName = "testos3", Email = "test3@test.ts" });}
         }
 
         private void AddClerences(CorporationHrDbContext context)
         {
             var listOfClearencesInDb = context.Clearences.Where(x => x.ClearenceId > 0).ToList(); //Don't ask
-            if (listOfClearencesInDb.Any())
-            {
-                listOfClearencesInDb.ForEach(x => GeneralHelper.Clearences.Add(x.ClearenceId, x.ClearenceName));
-                return;
-            }
+            if (listOfClearencesInDb.Any()) { return; }
 
             var clearenceGreen = new ClearenceModel { ClearenceWeight = 9, ClearenceName = "Public", ClearenceRgbColor = "#00C957" };
             var clearenceOrange = new ClearenceModel { ClearenceWeight = 2, ClearenceName = "Confidential", ClearenceRgbColor = "#00BFFF" };
@@ -130,8 +100,6 @@ namespace CorporationHR.Context
             context.Clearences.Add(clearenceRed);
             context.Clearences.Add(clearenceBlack);
             context.SaveChanges();
-
-            context.Clearences.ToList().ForEach(x => GeneralHelper.Clearences.Add(x.ClearenceId, x.ClearenceName));
         }
 
         private void AddClearencesToUsers(CorporationHrDbContext context)
