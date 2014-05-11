@@ -11,11 +11,13 @@ namespace CorporationHR.Models
     public class ClearenceModel
     {
         [Key]
+        [Display(Name = "Clearence Id")]
         public int ClearenceId { get; set; }
+        [Display(Name = "Clearence Weight")]
         public int ClearenceWeight { get; set; }
         [Display(Name = "Clearence")]
         public string ClearenceName { get; set; }
-
+        [Display(Name = "Clearence Color")]
         public string ClearenceRgbColor { get; set; }
 
         public virtual ICollection<UserProfile> UserProfiles { get; set; }

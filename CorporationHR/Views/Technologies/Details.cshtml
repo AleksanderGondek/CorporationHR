@@ -1,0 +1,50 @@
+﻿@model CorporationHR.Models.Technology
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Technology</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TechnologyInternalId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TechnologyInternalId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ShortDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ShortDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedOn)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedOn)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsCompleted)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsCompleted)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TechnologyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

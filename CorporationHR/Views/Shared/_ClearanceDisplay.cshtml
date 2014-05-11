@@ -1,10 +1,10 @@
-﻿@{
-    var clearenceName = ViewBag.UserClearenceName ?? "Coudn't get your clearence";
-    var clearenceColor = ViewBag.UserClearenceRgbColor ?? "#000000";
-}
-
+﻿@using CorporationHR.Helpers
 @{
-    if (!clearenceName.Equals("Coudn't get your clearence"))
+    var clearenceName = ClereancesHelper.Instance.GetClearenceNameFromUserName(User.Identity.Name);
+    var clearenceColor = ClereancesHelper.Instance.GetClearenceColorFromUserName(User.Identity.Name);
+}
+@{
+    if (!clearenceName.Equals("We coudn't aquire your clerance :("))
     {
         <div id="displayClearance" style="background-color: @clearenceColor;">
             <p style="width: 300px; color: #FFFFFF; margin-left: auto; margin-right: auto; font-weight: bold">Your clearence is: @clearenceName</p>

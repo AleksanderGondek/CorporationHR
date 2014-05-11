@@ -5,6 +5,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using CorporationHR.CustomAttribute;
 using CorporationHR.Models;
 using CorporationHR.Context;
 using CorporationHR.Repositories;
@@ -22,12 +24,14 @@ namespace CorporationHR.Controllers
         }
 
         // GET: /SecurityOfTables/
+        [CustomAuthorizeRead(CallingController = "Security Of Tables")]
         public ActionResult Index()
         {
             return View(_securityOfTablesRepo.All);
         }
 
         // GET: /SecurityOfTables/Details/5
+        [CustomAuthorizeRead(CallingController = "Security Of Tables")]
         public ActionResult Details(int id = 0)
         {
             SecurityOfTable securityoftable = _securityOfTablesRepo.Find(id);
@@ -39,16 +43,20 @@ namespace CorporationHR.Controllers
         }
 
         // GET: /SecurityOfTables/Create
+        [CustomAuthorizeWrite(CallingController = "Security Of Tables")]
         public ActionResult Create()
         {
+            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             return View();
         }
 
         // POST: /SecurityOfTables/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorizeWrite(CallingController = "Security Of Tables")]
         public ActionResult Create(SecurityOfTable securityoftable)
         {
+            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             if (ModelState.IsValid)
             {
                 _securityOfTablesRepo.Save(securityoftable);
@@ -59,8 +67,10 @@ namespace CorporationHR.Controllers
         }
 
         // GET: /SecurityOfTables/Edit/5
+        [CustomAuthorizeWrite(CallingController = "Security Of Tables")]
         public ActionResult Edit(int id = 0)
         {
+            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             SecurityOfTable securityoftable = _securityOfTablesRepo.Find(id);
             if (securityoftable == null)
             {
@@ -72,8 +82,10 @@ namespace CorporationHR.Controllers
         // POST: /SecurityOfTables/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorizeWrite(CallingController = "Security Of Tables")]
         public ActionResult Edit(SecurityOfTable securityoftable)
         {
+            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             if (ModelState.IsValid)
             {
                 _securityOfTablesRepo.Update(securityoftable);
@@ -83,8 +95,10 @@ namespace CorporationHR.Controllers
         }
 
         // GET: /SecurityOfTables/Delete/5
+        [CustomAuthorizeWrite(CallingController = "Security Of Tables")]
         public ActionResult Delete(int id = 0)
         {
+            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             SecurityOfTable securityoftable = _securityOfTablesRepo.Find(id);
             if (securityoftable == null)
             {
@@ -94,10 +108,12 @@ namespace CorporationHR.Controllers
         }
 
         // POST: /SecurityOfTables/Delete/5
+        [CustomAuthorizeWrite(CallingController = "Security Of Tables")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             SecurityOfTable securityoftable = _securityOfTablesRepo.Find(id);
             _securityOfTablesRepo.Remove(securityoftable);
             return RedirectToAction("Index");

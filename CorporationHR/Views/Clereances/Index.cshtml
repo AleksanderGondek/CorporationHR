@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CorporationHR.Models.ClearenceModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClearenceWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClearenceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClearenceRgbColor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClearenceWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClearenceName)
+        </td>
+        <td style="background-color: @item.ClearenceRgbColor">
+            @Html.DisplayFor(modelItem => item.ClearenceRgbColor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ClearenceId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ClearenceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ClearenceId })
+        </td>
+    </tr>
+}
+
+</table>

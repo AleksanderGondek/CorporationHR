@@ -14,114 +14,114 @@ using CorporationHR.Repositories;
 namespace CorporationHR.Controllers
 {
     [Authorize]
-    public class UserProfilesController : Controller
+    public class ClereancesController : Controller
     {
-        private readonly UserProfilesRepository _userProfilesRepo;
+        private readonly ClearencesRepository _clearencesRepo;
 
-        public UserProfilesController(ICorporationHrDatabaseContext databaseContext)
+        public ClereancesController(ICorporationHrDatabaseContext databaseContext)
         {
-            _userProfilesRepo = new UserProfilesRepository(databaseContext);
+            _clearencesRepo = new ClearencesRepository(databaseContext);
         }
 
-        // GET: /UserProfiles/
-        [CustomAuthorizeRead(CallingController = "User Profiles")]
+        // GET: /Clereances/
+        [CustomAuthorizeRead(CallingController = "Clearence Models")]
         public ActionResult Index()
         {
-            return View(_userProfilesRepo.All);
+            return View(_clearencesRepo.All);
         }
 
-        // GET: /UserProfiles/Details/5
-        [CustomAuthorizeRead(CallingController = "User Profiles")]
+        // GET: /Clereances/Details/5
+        [CustomAuthorizeRead(CallingController = "Clearence Models")]
         public ActionResult Details(int id = 0)
         {
-            UserProfile userprofile = _userProfilesRepo.Find(id);
-            if (userprofile == null)
+            ClearenceModel clearencemodel = _clearencesRepo.Find(id);
+            if (clearencemodel == null)
             {
                 return HttpNotFound();
             }
-            return View(userprofile);
+            return View(clearencemodel);
         }
 
-        // GET: /UserProfiles/Create
-        [CustomAuthorizeWrite(CallingController = "User Profiles")]
+        // GET: /Clereances/Create
+        [CustomAuthorizeWrite(CallingController = "Clearence Models")]
         public ActionResult Create()
         {
             if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             return View();
         }
 
-        // POST: /UserProfiles/Create
+        // POST: /Clereances/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CustomAuthorizeWrite(CallingController = "User Profiles")]
-        public ActionResult Create(UserProfile userprofile)
+        [CustomAuthorizeWrite(CallingController = "Clearence Models")]
+        public ActionResult Create(ClearenceModel clearencemodel)
         {
             if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             if (ModelState.IsValid)
             {
-                _userProfilesRepo.Save(userprofile);
+                _clearencesRepo.Save(clearencemodel);
                 return RedirectToAction("Index");
             }
 
-            return View(userprofile);
+            return View(clearencemodel);
         }
 
-        // GET: /UserProfiles/Edit/5
-        [CustomAuthorizeWrite(CallingController = "User Profiles")]
+        // GET: /Clereances/Edit/5
+        [CustomAuthorizeWrite(CallingController = "Clearence Models")]
         public ActionResult Edit(int id = 0)
         {
             if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
-            UserProfile userprofile = _userProfilesRepo.Find(id);
-            if (userprofile == null)
+            ClearenceModel clearencemodel = _clearencesRepo.Find(id);
+            if (clearencemodel == null)
             {
                 return HttpNotFound();
             }
-            return View(userprofile);
+            return View(clearencemodel);
         }
 
-        // POST: /UserProfiles/Edit/5
+        // POST: /Clereances/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CustomAuthorizeWrite(CallingController = "User Profiles")]
-        public ActionResult Edit(UserProfile userprofile)
+        [CustomAuthorizeWrite(CallingController = "Clearence Models")]
+        public ActionResult Edit(ClearenceModel clearencemodel)
         {
             if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
             if (ModelState.IsValid)
             {
-                _userProfilesRepo.Update(userprofile);
+                _clearencesRepo.Update(clearencemodel);
                 return RedirectToAction("Index");
             }
-            return View(userprofile);
+            return View(clearencemodel);
         }
 
-        // GET: /UserProfiles/Delete/5
-        [CustomAuthorizeWrite(CallingController = "User Profiles")]
+        // GET: /Clereances/Delete/5
+        [CustomAuthorizeWrite(CallingController = "Clearence Models")]
         public ActionResult Delete(int id = 0)
         {
             if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
-            UserProfile userprofile = _userProfilesRepo.Find(id);
-            if (userprofile == null)
+            ClearenceModel clearencemodel = _clearencesRepo.Find(id);
+            if (clearencemodel == null)
             {
                 return HttpNotFound();
             }
-            return View(userprofile);
+            return View(clearencemodel);
         }
 
-        // POST: /UserProfiles/Delete/5
+        // POST: /Clereances/Delete/5
+        [CustomAuthorizeWrite(CallingController = "Clearence Models")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [CustomAuthorizeWrite(CallingController = "User Profiles")]
         public ActionResult DeleteConfirmed(int id)
         {
             if (!Roles.IsUserInRole("Administrator")) return RedirectToAction("Forbidden", "Error");
-            UserProfile userprofile = _userProfilesRepo.Find(id);
-            _userProfilesRepo.Remove(userprofile);
+            ClearenceModel clearencemodel = _clearencesRepo.Find(id);
+            _clearencesRepo.Remove(clearencemodel);
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            _userProfilesRepo.Dispose();
+            _clearencesRepo.Dispose();
             base.Dispose(disposing);
         }
     }

@@ -1,0 +1,36 @@
+﻿@model CorporationHR.Models.ClearenceModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ClearenceModel</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ClearenceWeight)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClearenceWeight)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ClearenceName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClearenceName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ClearenceRgbColor)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClearenceRgbColor)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ClearenceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

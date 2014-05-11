@@ -56,7 +56,7 @@ namespace CorporationHR.Context
         {
             var securityOfTables = context.SecurityOfTables.ToList();
             var clearences = context.Clearences.ToList();
-            if (securityOfTables.Any(x => x.ClearenceModel != null)) return;
+            //if (securityOfTables.All(x => x.ClearenceModel != null)) return;
 
             foreach (var table in securityOfTables)
             {
@@ -72,7 +72,7 @@ namespace CorporationHR.Context
                         table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Public"));
                         break;
                     case "Technologies":
-                        table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Public"));
+                        table.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Confidential"));
                         break;
                     default:
                         break;;
@@ -142,11 +142,13 @@ namespace CorporationHR.Context
             var listOfClearencesInDb = context.Clearences.Where(x => x.ClearenceId > 0).ToList(); //Don't ask
             if (listOfClearencesInDb.Any()) { return; }
 
-            var clearenceGreen = new ClearenceModel { ClearenceWeight = 9, ClearenceName = "Public", ClearenceRgbColor = "#00C957" };
+            var clearenceWhite = new ClearenceModel { ClearenceWeight = 0, ClearenceName = "Public", ClearenceRgbColor = "#FFFFFF"};
+            var clearenceGreen = new ClearenceModel { ClearenceWeight = 1, ClearenceName = "Normal", ClearenceRgbColor = "#00C957" };
             var clearenceOrange = new ClearenceModel { ClearenceWeight = 2, ClearenceName = "Confidential", ClearenceRgbColor = "#00BFFF" };
-            var clearenceRed = new ClearenceModel { ClearenceWeight = 1, ClearenceName = "Secret", ClearenceRgbColor = "#EEC900" };
-            var clearenceBlack = new ClearenceModel { ClearenceWeight = 0, ClearenceName = "Top Secret", ClearenceRgbColor = "#CD0000" };
+            var clearenceRed = new ClearenceModel { ClearenceWeight = 3, ClearenceName = "Secret", ClearenceRgbColor = "#EEC900" };
+            var clearenceBlack = new ClearenceModel { ClearenceWeight = 4, ClearenceName = "Top Secret", ClearenceRgbColor = "#CD0000" };
 
+            context.Clearences.Add(clearenceWhite);
             context.Clearences.Add(clearenceGreen);
             context.Clearences.Add(clearenceOrange);
             context.Clearences.Add(clearenceRed);
@@ -160,9 +162,13 @@ namespace CorporationHR.Context
             var clearences = context.Clearences.ToList();
             if (!users.Any() || !clearences.Any()) return;
 
+            if (!Roles.RoleExists("Administrator")) { Roles.CreateRole("Administrator"); }
+
             foreach (var user in users)
             {
-                user.ClearenceModel = !user.UserName.Equals("admin") ? clearences.Single(x => x.ClearenceName.Equals("Public")) : clearences.Single(x => x.ClearenceName.Equals("Top Secret"));
+                if (user.UserName.Equals("admin") && Roles.IsUserInRole(user.UserName, "Administrator")) Roles.AddUserToRole(user.UserName, "Administrator");
+
+                user.ClearenceModel = !user.UserName.Equals("admin") ? clearences.Single(x => x.ClearenceName.Equals("Normal")) : clearences.Single(x => x.ClearenceName.Equals("Top Secret"));
                 if (user.UserName.Equals("userTest3")) { user.ClearenceModel = clearences.Single(x => x.ClearenceName.Equals("Confidential")); }
                 context.SaveChanges();
             }

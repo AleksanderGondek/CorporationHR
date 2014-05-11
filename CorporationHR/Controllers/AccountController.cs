@@ -93,8 +93,6 @@ namespace CorporationHR.Controllers
                 : "";
 
             ViewBag.ReturnUrl = Url.Action("Manage");
-            ViewBag.UserClearenceName = _selfManageUserRepo.GetClearenceNameFromUserName(User.Identity.Name);
-            ViewBag.UserClearenceRgbColor = _selfManageUserRepo.GetClearenceColorFromUserName(User.Identity.Name);
 
             return View();
         }
@@ -104,8 +102,6 @@ namespace CorporationHR.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Manage(UserPasswordModel model)
         {
-            ViewBag.UserClearenceName = _selfManageUserRepo.GetClearenceNameFromUserName(User.Identity.Name);
-            ViewBag.UserClearenceRgbColor = _selfManageUserRepo.GetClearenceColorFromUserName(User.Identity.Name);
             ViewBag.ReturnUrl = Url.Action("Manage");
 
             if (ModelState.IsValid)

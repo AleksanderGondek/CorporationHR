@@ -1,0 +1,54 @@
+﻿@model CorporationHR.Models.ClearenceModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ClearenceModel</legend>
+
+        @Html.HiddenFor(model => model.ClearenceId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClearenceWeight)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ClearenceWeight)
+            @Html.ValidationMessageFor(model => model.ClearenceWeight)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClearenceName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ClearenceName)
+            @Html.ValidationMessageFor(model => model.ClearenceName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClearenceRgbColor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ClearenceRgbColor)
+            @Html.ValidationMessageFor(model => model.ClearenceRgbColor)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

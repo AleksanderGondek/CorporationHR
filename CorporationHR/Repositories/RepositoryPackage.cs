@@ -67,23 +67,6 @@ namespace CorporationHR.Repositories
             DatabaseContext.Attach(entity);
         }
 
-        public string GetClearenceNameFromUserName(string userName)
-        {
-            var user = DatabaseContext.UserProfiles.Single(x => x.UserName.Equals(userName));
-            return user != null ? user.ClearenceModel.ClearenceName : string.Empty;
-        }
-
-        public string GetClearenceColorFromUserName(string userName)
-        {
-            var user = DatabaseContext.UserProfiles.Single(x => x.UserName.Equals(userName));
-            return user != null ? user.ClearenceModel.ClearenceRgbColor : string.Empty;
-        }
-        public int GetCurrentUserClearenceWeight(string userName)
-        {
-            var user = DatabaseContext.UserProfiles.Single(x => x.UserName.Equals(userName));
-            return user != null ? user.ClearenceModel.ClearenceWeight : 99;
-        }
-
         public abstract T Find(int id);
     }
 }
