@@ -24,6 +24,10 @@ namespace CorporationHR.Context
 
         public ActionResult Index()
         {
+            ViewBag.UserClearenceName = _technologyRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _technologyRepo.GetClearenceColorFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceWeight = _technologyRepo.GetCurrentUserClearenceWeight(User.Identity.Name);
+            ViewBag.ClearencesIdToColorMapping = _technologyRepo.GetClearencesColors();
             return View(_technologyRepo.All);
         }
 
@@ -32,6 +36,8 @@ namespace CorporationHR.Context
 
         public ActionResult Details(int id = 0)
         {
+            ViewBag.UserClearenceName = _technologyRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _technologyRepo.GetClearenceColorFromUserName(User.Identity.Name);
             Technology technology = _technologyRepo.Find(id);
             if (technology == null)
             {
@@ -45,7 +51,9 @@ namespace CorporationHR.Context
 
         public ActionResult Create()
         {
-            return View();
+            ViewBag.UserClearenceName = _technologyRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _technologyRepo.GetClearenceColorFromUserName(User.Identity.Name);
+            return View(new TechnologyCreationModel());
         }
 
         //
@@ -53,11 +61,18 @@ namespace CorporationHR.Context
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Technology technology)
+        public ActionResult Create(TechnologyCreationModel technology)
         {
             if (ModelState.IsValid)
             {
-                _technologyRepo.Save(technology);
+                var techno = new Technology();
+                techno.TechnologyInternalId = technology.TechnologyInternalId;
+                techno.ShortDescription = technology.ShortDescription;
+                techno.FullDescription = technology.FullDescription;
+                techno.CreatedOn = technology.CreatedOn;
+                techno.IsCompleted = technology.IsCompleted;
+
+                _technologyRepo.Save(techno);
                 return RedirectToAction("Index");
             }
 
@@ -69,6 +84,9 @@ namespace CorporationHR.Context
 
         public ActionResult Edit(int id = 0)
         {
+            ViewBag.UserClearenceName = _technologyRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _technologyRepo.GetClearenceColorFromUserName(User.Identity.Name);
+
             Technology technology = _technologyRepo.Find(id);
             if (technology == null)
             {
@@ -97,6 +115,9 @@ namespace CorporationHR.Context
 
         public ActionResult Delete(int id = 0)
         {
+            ViewBag.UserClearenceName = _technologyRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _technologyRepo.GetClearenceColorFromUserName(User.Identity.Name);
+
             Technology technology = _technologyRepo.Find(id);
             if (technology == null)
             {

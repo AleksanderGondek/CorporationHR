@@ -12,6 +12,7 @@ namespace CorporationHR.Models
     {
         [Key]
         public int ClearenceId { get; set; }
+        public int ClearenceWeight { get; set; }
         public string ClearenceName { get; set; }
 
         public string ClearenceRgbColor { get; set; }

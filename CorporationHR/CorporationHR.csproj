@@ -280,6 +280,7 @@
     <Content Include="Views\Technology\Create.cshtml" />
     <Content Include="Views\Technology\Edit.cshtml" />
     <Content Include="Views\Technology\Delete.cshtml" />
+    <Content Include="Views\Shared\_ClearanceDisplay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

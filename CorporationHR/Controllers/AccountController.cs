@@ -43,7 +43,7 @@ namespace CorporationHR.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                return RedirectToLocal(returnUrl);
+                return RedirectToAction("Index", "Technology");
             }
 
             // If we got this far, something failed, redisplay form
@@ -119,6 +119,8 @@ namespace CorporationHR.Controllers
                 : message == GeneralHelper.ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : "";
             ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.UserClearenceName = _simpleUserRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _simpleUserRepo.GetClearenceColorFromUserName(User.Identity.Name);
             ViewBag.UserClearence = _simpleUserRepo.GetCurrentUserClearence(User.Identity.Name);
             return View();
         }
@@ -126,6 +128,8 @@ namespace CorporationHR.Controllers
         [Authorize(Roles = "Active")]
         public ActionResult RequestClearence()
         {
+            ViewBag.UserClearenceName = _simpleUserRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _simpleUserRepo.GetClearenceColorFromUserName(User.Identity.Name);
             return View();
         }
 
@@ -137,6 +141,8 @@ namespace CorporationHR.Controllers
         [Authorize(Roles = "Active")]
         public ActionResult Manage(UserPasswordModel model)
         {
+            ViewBag.UserClearenceName = _simpleUserRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _simpleUserRepo.GetClearenceColorFromUserName(User.Identity.Name);
             ViewBag.ReturnUrl = Url.Action("Manage");
             if (ModelState.IsValid)
             {

@@ -1,10 +1,14 @@
-﻿@model IEnumerable<CorporationHR.Models.Technology>
+﻿@using CorporationHR.Models
+@model IEnumerable<CorporationHR.Models.Technology>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Browse Corporation Techs";
+    var nameOfClearance = ViewBag.UserClearenceName ?? "Coudn't get your clearence";
+    var clearenceWeight = ViewBag.UserClearenceWeight;
+    Dictionary<int, string> colors = ViewBag.ClearencesIdToColorMapping;
 }
 
-<h2>Index</h2>
+<h2>Browse Corporation Techs</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -26,10 +30,14 @@
         <th>
             @Html.DisplayNameFor(model => model.IsCompleted)
         </th>
+        <th>
+            Clearence required
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Where(x => x.ClearenceModel.ClearenceWeight >= clearenceWeight))
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.TechnologyInternalId)
@@ -45,6 +53,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsCompleted)
+        </td>
+        @{
+            var b = item.ClearenceModel.ClearenceId; 
+        }
+        <td style="color: #FFFFFF; background-color: @colors[b]">
+            @Html.DisplayFor(modelItem => item.ClearenceModel.ClearenceName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.TechnologyId }) |

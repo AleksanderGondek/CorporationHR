@@ -27,6 +27,8 @@ namespace CorporationHR.Controllers
 
         public ActionResult ManageUsers()
         {
+            ViewBag.UserClearenceName = _systemUsersRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _systemUsersRepo.GetClearenceColorFromUserName(User.Identity.Name);
             return View(_systemUsersRepo.All());
         }
 
@@ -35,6 +37,8 @@ namespace CorporationHR.Controllers
 
         public ActionResult UserDetails(int id)
         {
+            ViewBag.UserClearenceName = _systemUsersRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _systemUsersRepo.GetClearenceColorFromUserName(User.Identity.Name);
             return View(new UserProfileForAdminOperations(_systemUsersRepo.Find(id)));
         }
 
@@ -43,6 +47,8 @@ namespace CorporationHR.Controllers
 
         public ActionResult CreateUser()
         {
+            ViewBag.UserClearenceName = _systemUsersRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _systemUsersRepo.GetClearenceColorFromUserName(User.Identity.Name);
             return View();
         }
 
@@ -76,6 +82,8 @@ namespace CorporationHR.Controllers
 
         public ActionResult EditUser(int id)
         {
+            ViewBag.UserClearenceName = _systemUsersRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _systemUsersRepo.GetClearenceColorFromUserName(User.Identity.Name);
             return View(new UserProfileForAdminOperations(_systemUsersRepo.Find(id)));
         }
 
@@ -104,6 +112,8 @@ namespace CorporationHR.Controllers
 
         public ActionResult DeleteUser(int id)
         {
+            ViewBag.UserClearenceName = _systemUsersRepo.GetClearenceNameFromUserName(User.Identity.Name);
+            ViewBag.UserClearenceRgbColor = _systemUsersRepo.GetClearenceColorFromUserName(User.Identity.Name);
             return View(new UserProfileForAdminOperations(_systemUsersRepo.Find(id)));
         }
 

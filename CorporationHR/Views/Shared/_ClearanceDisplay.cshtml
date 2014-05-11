@@ -1,1 +1,13 @@
-﻿
+﻿@{
+    var clearenceName = ViewBag.UserClearenceName ?? "Coudn't get your clearence";
+    var clearenceColor = ViewBag.UserClearenceRgbColor ?? "#000000";
+}
+
+@{
+    if (!clearenceName.Equals("Coudn't get your clearence"))
+    {
+        <div id="displayClearance" style="background-color: @clearenceColor;">
+            <p style="width: 300px; color: #FFFFFF; margin-left: auto; margin-right: auto; font-weight: bold">Your clearence is: @clearenceName</p>
+        </div>
+    }
+}

@@ -7161,3 +7161,15 @@ td.visible-print {
 #admin_menu a:hover {
     background: #444444;
 }
+
+#displayClearance {
+    width: 1140px;
+    height: 35px;
+    margin-bottom: 5px;
+    padding-top: 7px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    vertical-align: middle;
+}

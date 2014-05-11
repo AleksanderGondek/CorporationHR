@@ -10,8 +10,8 @@ namespace CorporationHR.Helpers
 {
     public static class GeneralHelper
     {
+        //TODO Ta zmiana sie nei updatedowac bedzie przy zmianach Clearences czy kolorw w trakcie dzialania programu
         public static Dictionary<int, string> Clearences = new Dictionary<int, string>();
-        public static Dictionary<int, string> ClearenceIdToColorMapping = new Dictionary<int, string>(); 
 
         public static IEnumerable<SelectListItem> GetClearencesSelectList()
         {
