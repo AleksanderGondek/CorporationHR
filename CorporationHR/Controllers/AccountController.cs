@@ -71,7 +71,7 @@ namespace CorporationHR.Controllers
                 try
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { FirstName = model.FirstName, LastName = model.LastName, Email = model.Email });
-                    Roles.AddUserToRole(model.UserName, "Disabled");
+                    _selfManageUserRepo.AddClearenceToNewlyCreatedUser(model.UserName);
                     return RedirectToAction("Manage", "Account");
                 }
                 catch (MembershipCreateUserException e)
