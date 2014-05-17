@@ -36,6 +36,18 @@ namespace CorporationHR.Helpers
             set { _instance = value; }
         }
 
+        public void ReloadContext()
+        {
+            if (this.DatabaseContext == null) return;
+            DatabaseContext.Dispose();
+            DatabaseContext = null;
+
+            var kernel = new StandardKernel();
+            kernel.Load(Assembly.GetExecutingAssembly());
+            kernel.Bind<ICorporationHrDatabaseContext>().To<CorporationHrDbContext>();
+            DatabaseContext = kernel.Get<ICorporationHrDatabaseContext>();
+        }
+
         public string GetClearenceNameFromUserName(string userName)
         {
             if (string.IsNullOrEmpty(userName)) return "We coudn't aquire your clerance :(";

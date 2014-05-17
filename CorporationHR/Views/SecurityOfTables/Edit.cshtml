@@ -22,6 +22,12 @@
             @Html.EditorFor(model => model.TableName)
             @Html.ValidationMessageFor(model => model.TableName)
         </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.SelectedClearenceId)
+        </div>
+        <div class="display-field">
+            @Html.DropDownListFor(model => model.SelectedClearenceId, Model.Clearences)
+        </div>
 
         <p>
             <input type="submit" value="Save" />

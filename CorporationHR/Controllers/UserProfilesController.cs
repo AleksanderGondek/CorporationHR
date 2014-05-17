@@ -92,8 +92,6 @@ namespace CorporationHR.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                //userprofile = _userProfilesRepo.ChangeClearence(userprofile) ?? userprofile;
                 _userProfilesRepo.Update(userprofile);
                 return RedirectToAction("Index");
             }

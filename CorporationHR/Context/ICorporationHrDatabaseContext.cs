@@ -6,7 +6,7 @@ using CorporationHR.Models;
 
 namespace CorporationHR.Context
 {
-    public interface ICorporationHrDatabaseContext
+    public interface ICorporationHrDatabaseContext : IDisposable
     {
         //Db Columns
         IQueryable<UserProfile> UserProfiles { get; }

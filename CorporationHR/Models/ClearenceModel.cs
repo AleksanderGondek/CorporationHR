@@ -13,10 +13,13 @@ namespace CorporationHR.Models
         [Key]
         [Display(Name = "Clearence Id")]
         public int ClearenceId { get; set; }
+        [Required]
         [Display(Name = "Clearence Weight")]
         public int ClearenceWeight { get; set; }
+        [Required]
         [Display(Name = "Clearence")]
         public string ClearenceName { get; set; }
+        [Required]
         [Display(Name = "Clearence Color")]
         public string ClearenceRgbColor { get; set; }
 

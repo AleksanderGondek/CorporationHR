@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using CorporationHR.CustomAttribute;
+using CorporationHR.Helpers;
 using CorporationHR.Models;
 using CorporationHR.Context;
 using CorporationHR.Repositories;
@@ -74,6 +75,12 @@ namespace CorporationHR.Controllers
             {
                 return HttpNotFound();
             }
+
+            securityoftable.SelectedClearenceId = securityoftable.ClearenceModel != null
+                ? securityoftable.ClearenceModel.ClearenceId
+                : -1;
+            securityoftable.Clearences = ClereancesHelper.Instance.GetClearencesSelectList();
+
             return View(securityoftable);
         }
 

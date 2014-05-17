@@ -15,5 +15,18 @@ namespace CorporationHR.Repositories
         {
             return DatabaseContext.SecurityOfTables.ToList().Find(x => x.TableId.Equals(id));
         }
+
+        public override void Update(SecurityOfTable entity)
+        {
+            base.Update(entity);
+
+            if (entity.SelectedClearenceId > 0)
+            {
+                var table = DatabaseContext.SecurityOfTables.Single(x => x.TableId.Equals(entity.TableId));
+                table.ClearenceModel = DatabaseContext.Clearences.Single(x => x.ClearenceId.Equals(entity.SelectedClearenceId));
+                DatabaseContext.Attach(table);
+                DatabaseContext.SaveChanges();
+            }
+        }
     }
 }

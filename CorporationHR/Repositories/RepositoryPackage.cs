@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CorporationHR.Context;
+using CorporationHR.Helpers;
 
 namespace CorporationHR.Repositories
 {
@@ -35,12 +36,14 @@ namespace CorporationHR.Repositories
         {
             DatabaseContext.Attach(entity);
             DatabaseContext.SaveChanges();
+            ClereancesHelper.Instance.ReloadContext();
         }
 
         public virtual bool Save(T entity)
         {
             DatabaseContext.Add(entity);
             DatabaseContext.SaveChanges();
+            ClereancesHelper.Instance.ReloadContext();
             return true;
         }
 
@@ -48,6 +51,7 @@ namespace CorporationHR.Repositories
         {
             DatabaseContext.Delete(entity);
             DatabaseContext.SaveChanges();
+            ClereancesHelper.Instance.ReloadContext();
         }
 
         public virtual void Dispose()
