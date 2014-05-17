@@ -9,6 +9,7 @@ using CorporationHR.Helpers;
 
 namespace CorporationHR.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class AccountController : Controller
     {

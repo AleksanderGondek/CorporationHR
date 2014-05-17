@@ -14,6 +14,7 @@ using CorporationHR.Repositories;
 
 namespace CorporationHR.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class UserProfilesController : Controller
     {

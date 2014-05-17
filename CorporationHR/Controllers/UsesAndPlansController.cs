@@ -12,6 +12,7 @@ using CorporationHR.Repositories;
 
 namespace CorporationHR.Controllers
 {
+    [RequireHttps]
     public class UsesAndPlansController : Controller
     {
         private readonly UseAndPlansRepository _usesAndPlansRepo;

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CorporationHR.Controllers
 {
+    [RequireHttps]
     public class ErrorController : Controller
     {
         public ActionResult NotFound()

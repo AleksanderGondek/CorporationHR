@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CorporationHR.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class HomeController : Controller
     {

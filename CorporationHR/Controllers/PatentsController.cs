@@ -11,6 +11,7 @@ using CorporationHR.Repositories;
 
 namespace CorporationHR.Controllers
 {
+    [RequireHttps]
     public class PatentsController : Controller
     {
         private readonly PatentsRepository _patentsRepo;

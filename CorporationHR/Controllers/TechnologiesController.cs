@@ -11,6 +11,7 @@ using CorporationHR.Repositories;
 
 namespace CorporationHR.Context
 {
+    [RequireHttps]
     public class TechnologiesController : Controller
     {
         private readonly TechnologiesRepository _technologiesRepo;

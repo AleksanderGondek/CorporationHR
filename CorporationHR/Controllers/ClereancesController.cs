@@ -13,6 +13,7 @@ using CorporationHR.Repositories;
 
 namespace CorporationHR.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class ClereancesController : Controller
     {
