@@ -4,10 +4,11 @@ Zeby https dzialalo:
 2. Otworz: applicationhost.config
 3. Znajdz wpis odpowiadajacy za CorpoHR
 			Na przyklad
+			
 			```
             <site name="CorporationHR(1)" id="7">
                 <application path="/" applicationPool="Clr4IntegratedAppPool">
-                    <virtualDirectory path="/" physicalPath="C:\Users\Aleksander\SkyDrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR" />
+                    <virtualDirectory path="/" physicalPath="C:\Users\{UserName}\SkyDrive\Visual Studio 2013 Projects\CorporationHR\CorporationHR" />
                 </application>
                 <bindings>
                     <binding protocol="http" bindingInformation="*:57420:localhost" />
@@ -15,6 +16,7 @@ Zeby https dzialalo:
                 </bindings>
             </site>
 			```
+			
 4. Dodaj wpis odpowiadajacy za obsluge https : 
 	```
 	<binding protocol="https" bindingInformation="*:44300:localhost" />
