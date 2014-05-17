@@ -33,14 +33,17 @@
             @Html.DisplayFor(modelItem => item.TableName)
         </td>
         <td style="background-color: @item.ClearenceModel.ClearenceRgbColor;">
-            @Html.DisplayFor(modelItem => item.ClearenceModel.ClearenceName)
+            @Html.DisplayFor(modelItem => item.ClearenceModel.ClearenceName) (Weight: 
+            @Html.DisplayFor(modelItem => item.ClearenceModel.ClearenceWeight) )
         </td>
         <td>
             @Html.ActionLink("Details", "Details", new { id = item.TableId })
             @{
                 if (canEdit)
                 {
+                    <span>&#8226;</span>
                     @Html.ActionLink("Edit", "Edit", new { id=item.TableId })
+                    <span>&#8226;</span>
                     @Html.ActionLink("Delete", "Delete", new { id=item.TableId })
                 }
             }

@@ -20,20 +20,25 @@
             Security Of Tables
         </td>
         <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("Security Of Tables")">
-            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("Security Of Tables")
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("Security Of Tables") (Weight: @ClereancesHelper.Instance.GetClearenceWeightFromControllerName("Security Of Tables"))
         </td>
         <td>
         <td>
             @{
-                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "Security Of Tables"))
+                var canWriteToSecurityOfTables = ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "Security Of Tables");
+                var canReadSecurityOfTables = ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "Security Of Tables");
+
+                if (canWriteToSecurityOfTables)
                 {
-                    @Html.ActionLink("Add entry", "Create","SecurityOfTables")
+                    @Html.ActionLink("Add entry", "Create", "SecurityOfTables")
                 }
-            }
-            @{
-                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "Security Of Tables"))
+                if (canReadSecurityOfTables && canWriteToSecurityOfTables)
                 {
-                    @Html.ActionLink("View Table", "Index","SecurityOfTables")
+                    <span>&#8226;</span>
+                }
+                if (canReadSecurityOfTables)
+                {
+                    @Html.ActionLink("View Table", "Index", "SecurityOfTables")
                 }
             }
         </td>
@@ -44,22 +49,27 @@
             User Profiles
         </td>
         <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("User Profiles")">
-            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("User Profiles")
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("User Profiles") (Weight: @ClereancesHelper.Instance.GetClearenceWeightFromControllerName("User Profiles"))
         </td>
         <td>
         <td>
             @{
-                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "User Profiles"))
+                var canWriteToUserProfiles = ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "User Profiles");
+                var canReadUserProfiles = ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "User Profiles");
+
+                if (canWriteToUserProfiles)
                 {
                     @Html.ActionLink("Add entry", "Create", "UserProfiles")
                 }
-            }
-            @{
-                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "User Profiles"))
+                if (canReadUserProfiles && canWriteToUserProfiles)
+                {
+                    <span>&#8226;</span>
+                }
+                if (canReadUserProfiles)
                 {
                     @Html.ActionLink("View Table", "Index", "UserProfiles")
                 }
-            }
+            }            
         </td>
     </tr>
     
@@ -68,18 +78,23 @@
             Clearences
         </td>
         <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("Clearence Models")">
-            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("Clearence Models")
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("Clearence Models") (Weight: @ClereancesHelper.Instance.GetClearenceWeightFromControllerName("Clearence Models"))
         </td>
         <td>
         <td>
             @{
-                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "Clearence Models"))
+                var canWriteToClereances = ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "Clearence Models");
+                var canReadClereances = ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "Clearence Models");
+
+                if (canWriteToClereances)
                 {
                     @Html.ActionLink("Add entry", "Create", "Clereances")
                 }
-            }
-            @{
-                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "Clearence Models"))
+                if (canReadClereances && canWriteToClereances)
+                {
+                    <span>&#8226;</span>
+                }
+                if (canReadClereances)
                 {
                     @Html.ActionLink("View Table", "Index", "Clereances")
                 }
@@ -92,18 +107,23 @@
             Technologies
         </td>
         <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("Technologies")">
-            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("Technologies")
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("Technologies") (Weight: @ClereancesHelper.Instance.GetClearenceWeightFromControllerName("Technologies"))
         </td>
         <td>
         <td>
             @{
-                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "Technologies"))
+                var canWriteToTechnologies = ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "Technologies");
+                var canReadTechnologies = ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "Technologies");
+
+                if (canWriteToTechnologies)
                 {
                     @Html.ActionLink("Add entry", "Create", "Technologies")
                 }
-            }
-            @{
-                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "Technologies"))
+                if (canReadTechnologies && canWriteToTechnologies)
+                {
+                    <span>&#8226;</span>
+                }
+                if (canReadTechnologies)
                 {
                     @Html.ActionLink("View Table", "Index", "Technologies")
                 }
@@ -116,22 +136,27 @@
             Technology Authors
         </td>
         <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("TechnologyAuthors")">
-            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("TechnologyAuthors")
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("TechnologyAuthors") (Weight: @ClereancesHelper.Instance.GetClearenceWeightFromControllerName("TechnologyAuthors"))
         </td>
         <td>
         <td>
             @{
-                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "TechnologyAuthors"))
+                var canWriteToTechnologyAuthors = ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "TechnologyAuthors");
+                var canReadTechnologyAuthors = ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "TechnologyAuthors");
+
+                if (canWriteToTechnologyAuthors)
                 {
                     @Html.ActionLink("Add entry", "Create", "TechnologyAuthors")
                 }
-            }
-            @{
-                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "TechnologyAuthors"))
+                if (canReadTechnologyAuthors && canWriteToTechnologyAuthors)
+                {
+                    <span>&#8226;</span>
+                }
+                if (canReadTechnologyAuthors)
                 {
                     @Html.ActionLink("View Table", "Index", "TechnologyAuthors")
                 }
-            }
+            }            
         </td>
     </tr>
     
@@ -140,18 +165,23 @@
             Uses And Plans
         </td>
         <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("UsesAndPlans")">
-            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("UsesAndPlans")
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("UsesAndPlans") (Weight: @ClereancesHelper.Instance.GetClearenceWeightFromControllerName("UsesAndPlans"))
         </td>
         <td>
         <td>
             @{
-                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "UsesAndPlans"))
+                var canWriteToUsesAndPlans = ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "UsesAndPlans");
+                var canReadUsesAndPlans = ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "UsesAndPlans");
+
+                if (canWriteToUsesAndPlans)
                 {
                     @Html.ActionLink("Add entry", "Create", "UsesAndPlans")
                 }
-            }
-            @{
-                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "UsesAndPlans"))
+                if (canReadUsesAndPlans && canWriteToUsesAndPlans)
+                {
+                    <span>&#8226;</span>
+                }
+                if (canReadUsesAndPlans)
                 {
                     @Html.ActionLink("View Table", "Index", "UsesAndPlans")
                 }
@@ -164,18 +194,23 @@
             Patents
         </td>
         <td style="background-color: @ClereancesHelper.Instance.GetClearenceColorFromControllerName("Patents")">
-            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("Patents")
+            @ClereancesHelper.Instance.GetClearenceNameFromControllerName("Patents") (Weight: @ClereancesHelper.Instance.GetClearenceWeightFromControllerName("Patents"))
         </td>
         <td>
         <td>
             @{
-                if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "Patents"))
+                var canWriteToPatents = ClereancesHelper.Instance.CheckIfUserCanWriteContent(User.Identity.Name, "Patents");
+                var canReadPatents = ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "Patents");
+                
+                if (canWriteToPatents)
                 {
                     @Html.ActionLink("Add entry", "Create", "Patents")
                 }
-            }
-            @{
-                if (ClereancesHelper.Instance.CheckIfUserCanViewContent(User.Identity.Name, "Patents"))
+                if (canReadPatents && canWriteToPatents)
+                {
+                    <span>&#8226;</span>
+                }
+                if (canReadPatents)
                 {
                     @Html.ActionLink("View Table", "Index", "Patents")
                 }

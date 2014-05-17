@@ -27,6 +27,19 @@ namespace CorporationHR.Repositories
             return true;
         }
 
+        public override void Update(UserProfile entity)
+        {
+            base.Update(entity);
+
+            if (entity.SelectedClearenceId > 0)
+            {
+                var user = DatabaseContext.UserProfiles.Single(x => x.UserId.Equals(entity.UserId));
+                user.ClearenceModel = DatabaseContext.Clearences.Single(x => x.ClearenceId.Equals(entity.SelectedClearenceId));
+                DatabaseContext.Attach(user);
+                DatabaseContext.SaveChanges(); 
+            }
+        }
+
         public override UserProfile Find(int id)
         {
             return DatabaseContext.UserProfiles.ToList().Find(x => x.UserId.Equals(id));

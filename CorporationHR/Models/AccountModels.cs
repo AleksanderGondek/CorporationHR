@@ -13,6 +13,7 @@ namespace CorporationHR.Models
     [Table("UserProfile")]
     public class UserProfile
     {
+
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
@@ -20,6 +21,11 @@ namespace CorporationHR.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+
+        [NotMapped]
+        public int SelectedClearenceId { get; set; }
+        [NotMapped]
+        public IEnumerable<SelectListItem> Clearences { get; set; }
 
         public virtual ClearenceModel ClearenceModel { get; set; }
     }

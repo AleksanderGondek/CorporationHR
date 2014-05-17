@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Web.Mvc;
 using CorporationHR.Context;
 using Ninject;
 using Ninject.Modules;
@@ -101,6 +102,13 @@ namespace CorporationHR.Helpers
             if (string.IsNullOrEmpty(controllerName)) return "#FFFFFF";
             var user = DatabaseContext.SecurityOfTables.Single(x => x.TableName.Equals(controllerName));
             return user != null ? user.ClearenceModel.ClearenceRgbColor : "#FFFFFF";
+        }
+
+        public IEnumerable<SelectListItem> GetClearencesSelectList()
+        {
+            if (!DatabaseContext.Clearences.Any()) return null;
+            var values = DatabaseContext.Clearences.ToList().Select(x => new SelectListItem() { Value = x.ClearenceId.ToString(), Text = string.Format("{0} - {1}",x.ClearenceName, x.ClearenceWeight.ToString()) });
+            return new SelectList(values, "Value", "Text");
         }
     }
 }

@@ -40,8 +40,10 @@
             @{
                 if (canEdit)
                 {
-                     @Html.ActionLink("Edit", "Edit", new { id = item.PatentId })
-                     @Html.ActionLink("Delete", "Delete", new { id = item.PatentId })
+                    <span>&#8226;</span>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PatentId })
+                    <span>&#8226;</span>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PatentId })
                  }
             }
         </td>

@@ -52,7 +52,9 @@
             @{
                 if (canEdit)
                 {
+                    <span>&#8226;</span>
                     @Html.ActionLink("Edit", "Edit", new { id=item.UseAndPlanId })
+                    <span>&#8226;</span>
                     @Html.ActionLink("Delete", "Delete", new { id=item.UseAndPlanId })                    
                 }
             }

@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using CorporationHR.CustomAttribute;
+using CorporationHR.Helpers;
 using CorporationHR.Models;
 using CorporationHR.Context;
 using CorporationHR.Repositories;
@@ -73,6 +74,12 @@ namespace CorporationHR.Controllers
             {
                 return HttpNotFound();
             }
+
+            userprofile.SelectedClearenceId = userprofile.ClearenceModel != null
+                ? userprofile.ClearenceModel.ClearenceId
+                : -1;
+            userprofile.Clearences = ClereancesHelper.Instance.GetClearencesSelectList();
+
             return View(userprofile);
         }
 
@@ -84,6 +91,8 @@ namespace CorporationHR.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //userprofile = _userProfilesRepo.ChangeClearence(userprofile) ?? userprofile;
                 _userProfilesRepo.Update(userprofile);
                 return RedirectToAction("Index");
             }
