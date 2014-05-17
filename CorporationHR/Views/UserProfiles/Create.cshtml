@@ -1,4 +1,4 @@
-﻿@model CorporationHR.Models.UserProfile
+﻿@model CorporationHR.Models.RegisterModel
 
 @{
     ViewBag.Title = "Create";
@@ -6,12 +6,13 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>UserProfile</legend>
+        <legend>Create new user</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.UserName)
@@ -43,6 +44,22 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.Email)
             @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
         </div>
 
         <p>

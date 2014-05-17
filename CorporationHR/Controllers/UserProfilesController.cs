@@ -53,7 +53,7 @@ namespace CorporationHR.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomAuthorizeWrite(CallingController = "User Profiles")]
-        public ActionResult Create(UserProfile userprofile)
+        public ActionResult Create(RegisterModel userprofile)
         {
             if (ModelState.IsValid)
             {
