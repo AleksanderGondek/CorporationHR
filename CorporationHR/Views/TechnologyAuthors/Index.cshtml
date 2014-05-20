@@ -39,18 +39,6 @@
         <th>
             @Html.DisplayNameFor(model => model.CorporateEmail)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FullCorespondenceAdress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FullCurrentAdress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PrivateEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PrivatePhoneNumber)
-        </th>
         <th></th>
     </tr>
 
@@ -76,18 +64,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CorporateEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FullCorespondenceAdress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FullCurrentAdress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrivateEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrivatePhoneNumber)
         </td>
         <td>
             @Html.ActionLink("Details", "Details", new { id = item.TechnologyAuthorId })

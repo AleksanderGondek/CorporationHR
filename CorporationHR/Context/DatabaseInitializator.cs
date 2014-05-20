@@ -104,13 +104,31 @@ namespace CorporationHR.Context
         {
             if (context.Patents.ToList().Any()) return;
 
-            var newPatent = new Patent()
+            var newPatent1 = new Patent()
                             {
-                                PatentName = "Patent example",
-                                PatentText = "Patent description!"
+                                PatentName = "Patent1 example",
+                                PatentText = "Patent1 description!"
+                            };
+            var newPatent2 = new Patent()
+                            {
+                                PatentName = "Patent2 example",
+                                PatentText = "Patent2 description!"
+                            };
+            var newPatent3 = new Patent()
+                            {
+                                PatentName = "Patent3 example",
+                                PatentText = "Patent3 description!"
+                            };
+            var newPatent4 = new Patent()
+                            {
+                                PatentName = "Patent4 example",
+                                PatentText = "Patent4 description!"
                             };
 
-            context.Patents.Add(newPatent);
+            context.Patents.Add(newPatent1);
+            context.Patents.Add(newPatent2);
+            context.Patents.Add(newPatent3);
+            context.Patents.Add(newPatent4);
             context.SaveChanges();
         }
 
@@ -118,15 +136,39 @@ namespace CorporationHR.Context
         {
             if (context.UseAndPlans.ToList().Any()) return;
 
-            var useAndPlan = new UseAndPlan
+            var useAndPlan1 = new UseAndPlan
                              {
-                                 Abstract = "Abstract",
+                                 Abstract = "Abstract1",
                                  CompetitionPlans = "Blah blah plans of competitions",
                                  FuturePlans = "Some future plans",
                                  Usages = "Usages, usages, usages",
                              };
+            var useAndPlan2 = new UseAndPlan
+                            {
+                                Abstract = "Abstract2",
+                                CompetitionPlans = "Blah blah plans of competitions",
+                                FuturePlans = "Some future plans",
+                                Usages = "Usages, usages, usages",
+                            };
+            var useAndPlan3 = new UseAndPlan
+                            {
+                                Abstract = "Abstract3",
+                                CompetitionPlans = "Blah blah plans of competitions",
+                                FuturePlans = "Some future plans",
+                                Usages = "Usages, usages, usages",
+                            };
+            var useAndPlan4 = new UseAndPlan
+                            {
+                                Abstract = "Abstract4",
+                                CompetitionPlans = "Blah blah plans of competitions",
+                                FuturePlans = "Some future plans",
+                                Usages = "Usages, usages, usages",
+                            };
 
-            context.UseAndPlans.Add(useAndPlan);
+            context.UseAndPlans.Add(useAndPlan1);
+            context.UseAndPlans.Add(useAndPlan2);
+            context.UseAndPlans.Add(useAndPlan3);
+            context.UseAndPlans.Add(useAndPlan4);
             context.SaveChanges();
         }
 
@@ -159,7 +201,7 @@ namespace CorporationHR.Context
 
             var newPublicTech = new Technology()
                                 {
-                                    TechnologyInternalId = "This is GUID of some public tech",
+                                    TechnologyInternalId = "This is GUID of some public tech This is GUID of some public tech",
                                     ShortDescription = "This is a short description of some public tech",
                                     FullDescription = "This is a long description of some public tech",
                                     CreatedOn = DateTime.Now,
@@ -168,7 +210,7 @@ namespace CorporationHR.Context
 
             var newConfidentialTech = new Technology()
                                       {
-                                          TechnologyInternalId = "This is GUID of some confidential tech",
+                                          TechnologyInternalId = "This is GUID of some confidential tech This is GUID of some public tech",
                                           ShortDescription = "This is a short description of some confidential tech",
                                           FullDescription = "This is a long description of some confidential tech",
                                           CreatedOn = DateTime.Now,
@@ -177,7 +219,7 @@ namespace CorporationHR.Context
 
             var newSecretTech = new Technology()
                                 {
-                                    TechnologyInternalId = "This is GUID of some secret tech",
+                                    TechnologyInternalId = "This is GUID of some secret tech This is GUID of some public tech",
                                     ShortDescription = "This is a short description of some secret tech",
                                     FullDescription = "This is a long description of some secret tech",
                                     CreatedOn = DateTime.Now,
@@ -186,7 +228,7 @@ namespace CorporationHR.Context
 
             var newTopSecretTech = new Technology()
                                    {
-                                       TechnologyInternalId = "This is GUID of some TopSecret tech",
+                                       TechnologyInternalId = "This is GUID of some TopSecret tech This is GUID of some public tech",
                                        ShortDescription = "This is a short description of some TopSecret tech",
                                        FullDescription = "This is a long description of some TopSecret tech",
                                        CreatedOn = DateTime.Now,

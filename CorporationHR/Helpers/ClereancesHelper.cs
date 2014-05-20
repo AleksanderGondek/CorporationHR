@@ -106,21 +106,21 @@ namespace CorporationHR.Helpers
         public int GetClearenceWeightFromControllerName(string controllerName)
         {
             if (string.IsNullOrEmpty(controllerName)) return -1;
-            var securityTableEntry = DatabaseContext.SecurityOfTables.Single(x => x.TableName.Equals(controllerName));
+            var securityTableEntry = DatabaseContext.SecurityOfTables.SingleOrDefault(x => x.TableName.Equals(controllerName));
             return securityTableEntry != null ? securityTableEntry.ClearenceModel.ClearenceWeight : -1;
         }
 
         public string GetClearenceNameFromControllerName(string controllerName)
         {
             if (string.IsNullOrEmpty(controllerName)) return "We coudn't aquire clerance :(";
-            var user = DatabaseContext.SecurityOfTables.Single(x => x.TableName.Equals(controllerName));
+            var user = DatabaseContext.SecurityOfTables.SingleOrDefault((x => x.TableName.Equals(controllerName)));
             return user != null ? user.ClearenceModel.ClearenceName : "We coudn't aquire clerance :(";
         }
 
         public string GetClearenceColorFromControllerName(string controllerName)
         {
             if (string.IsNullOrEmpty(controllerName)) return "#FFFFFF";
-            var user = DatabaseContext.SecurityOfTables.Single(x => x.TableName.Equals(controllerName));
+            var user = DatabaseContext.SecurityOfTables.SingleOrDefault((x => x.TableName.Equals(controllerName)));
             return user != null ? user.ClearenceModel.ClearenceRgbColor : "#FFFFFF";
         }
 
