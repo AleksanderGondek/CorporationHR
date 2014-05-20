@@ -28,7 +28,7 @@ namespace CorporationHR.Controllers
         [CustomAuthorizeRead(CallingController = "Clearence Models")]
         public ActionResult Index()
         {
-            return View(_clearencesRepo.All);
+            return View(_clearencesRepo.GetAllSortedByWeight());
         }
 
         // GET: /Clereances/Details/5
@@ -89,7 +89,7 @@ namespace CorporationHR.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_clearencesRepo.CheckIfClearenceIsDuplicatingExistingEntites(clearencemodel))
+                if (_clearencesRepo.CheckIfClearenceIsDuplicatingExistingEntitesEditMode(clearencemodel))
                 {
                     return RedirectToAction("CustomError", "Error", new { errorTitle = "Error adding new Clearence!", errorText = "Clearence with such fields already exists." });
                 }

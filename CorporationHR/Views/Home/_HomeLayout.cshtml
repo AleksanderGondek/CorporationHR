@@ -176,7 +176,9 @@
 
         <footer>
             <p class="pull-right2"><a href="#">Back to top</a></p>
-            <p class="footer2">&copy; @DateTime.Now.Year - CorporationTech &middot; @Html.ActionLink("Home", "Index", "Home")  &middot; @Html.ActionLink("About", "About", "Home")  &middot; @Html.ActionLink("Explore CorpoDb", "ExploreDb", "Home")  &middot; @Html.ActionLink("Contact", "Contact", "Home")
+            <p class="footer2">&copy; @DateTime.Now.Year - CorporationTech &middot; @Html.ActionLink("Home", "Index", "Home")  &middot; @Html.ActionLink("About", "About", "Home")  
+            @if (User.Identity.IsAuthenticated){ <span>&middot;</span> @Html.ActionLink("Explore CorpoDb", "ExploreDb", "Home")}
+                &middot; @Html.ActionLink("Contact", "Contact", "Home")
         </footer>
 
     </div>

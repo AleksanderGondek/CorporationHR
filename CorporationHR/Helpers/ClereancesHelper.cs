@@ -36,11 +36,19 @@ namespace CorporationHR.Helpers
             set { _instance = value; }
         }
 
+        public void RemoveContext()
+        {
+            this.DatabaseContext.Dispose();
+            this.DatabaseContext = null;
+        }
+
         public void ReloadContext()
         {
-            if (this.DatabaseContext == null) return;
-            DatabaseContext.Dispose();
-            DatabaseContext = null;
+            if (this.DatabaseContext != null)
+            {
+                DatabaseContext.Dispose();
+                DatabaseContext = null;
+            }
 
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
