@@ -44,13 +44,14 @@ namespace CorporationHR
             kernel.Bind<ICorporationHrDatabaseContext>().To<CorporationHrDbContext>();
             return kernel;
         }
-
+        
+        
         protected void Application_BeginRequest()
         {
             if (!Context.Request.IsSecureConnection)
             {
                 var urlToHttps = Context.Request.Url.ToString().Replace("http:", "https:");
-                Response.Redirect(urlToHttps.Replace("57420", "44300"));               
+                Response.Redirect(urlToHttps.Replace("57420", "44302"));               
             }
 
         }

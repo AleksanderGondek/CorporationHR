@@ -58,6 +58,10 @@ namespace CorporationHR.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (_clearencesRepo.CheckIfClearenceIsDuplicatingExistingEntites(clearencemodel))
+                {
+                    return RedirectToAction("CustomError", "Error", new {errorTitle = "Error adding new Clearence!", errorText = "Clearence with such fields already exists."});
+                }
                 _clearencesRepo.Save(clearencemodel);
                 return RedirectToAction("Index");
             }
@@ -85,6 +89,10 @@ namespace CorporationHR.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (_clearencesRepo.CheckIfClearenceIsDuplicatingExistingEntites(clearencemodel))
+                {
+                    return RedirectToAction("CustomError", "Error", new { errorTitle = "Error adding new Clearence!", errorText = "Clearence with such fields already exists." });
+                }
                 _clearencesRepo.Update(clearencemodel);
                 return RedirectToAction("Index");
             }
@@ -109,6 +117,11 @@ namespace CorporationHR.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (_clearencesRepo.CheckIfThisClearenceIsUsedAnywhere(id))
+            {
+                return RedirectToAction("CustomError", "Error", new { errorTitle = "Error removing Clearence!", errorText = "Clearence is still beeing used!" });
+            }
+
             ClearenceModel clearencemodel = _clearencesRepo.Find(id);
             _clearencesRepo.Remove(clearencemodel);
             return RedirectToAction("Index");

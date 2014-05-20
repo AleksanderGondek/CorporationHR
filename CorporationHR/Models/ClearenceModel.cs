@@ -15,12 +15,14 @@ namespace CorporationHR.Models
         public int ClearenceId { get; set; }
         [Required]
         [Display(Name = "Clearence Weight")]
+        [RegularExpression(@"^[0-9]\d{0,2}$")]
         public int ClearenceWeight { get; set; }
         [Required]
         [Display(Name = "Clearence")]
         public string ClearenceName { get; set; }
         [Required]
         [Display(Name = "Clearence Color")]
+        [RegularExpression(@"^#(?:[0-9a-fA-F]{3}){1,2}$")]
         public string ClearenceRgbColor { get; set; }
 
         public virtual ICollection<UserProfile> UserProfiles { get; set; }

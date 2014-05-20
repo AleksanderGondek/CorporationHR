@@ -17,5 +17,12 @@ namespace CorporationHR.Controllers
         {
             return View();
         }
+
+        public ActionResult CustomError(string errorTitle, string errorText)
+        {
+            ViewBag.ErrorTitle = errorTitle;
+            ViewBag.ErrorText = errorText;
+            return View();
+        }
     }
 }
