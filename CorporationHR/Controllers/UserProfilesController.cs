@@ -11,6 +11,7 @@ using CorporationHR.Helpers;
 using CorporationHR.Models;
 using CorporationHR.Context;
 using CorporationHR.Repositories;
+using WebMatrix.WebData;
 
 namespace CorporationHR.Controllers
 {
@@ -117,6 +118,13 @@ namespace CorporationHR.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             UserProfile userprofile = _userProfilesRepo.Find(id);
+            if (userprofile.UserName.Equals(User.Identity.Name))
+            {
+                _userProfilesRepo.Remove(userprofile);
+                WebSecurity.Logout();
+                return RedirectToAction("Index", "Home");   
+            }
+            
             _userProfilesRepo.Remove(userprofile);
             return RedirectToAction("Index");
         }

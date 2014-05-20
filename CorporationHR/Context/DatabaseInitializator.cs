@@ -65,7 +65,7 @@ namespace CorporationHR.Context
         {
             var securityOfTables = context.SecurityOfTables.ToList();
             var clearences = context.Clearences.ToList();
-            //if (securityOfTables.All(x => x.ClearenceModel != null)) return; //TODO: later we can uncomment this
+            if (securityOfTables.All(x => x.ClearenceModel != null)) return;
 
             foreach (var table in securityOfTables)
             {
@@ -202,7 +202,7 @@ namespace CorporationHR.Context
 
         private void AddUsers()
         {
-            if (!WebSecurity.UserExists("admin")) { WebSecurity.CreateUserAndAccount("admin", "test", new { FirstName = "Admin", LastName = "Admin", Email = "admin@admin.ad"}); }
+            if (!WebSecurity.UserExists("admin")) { WebSecurity.CreateUserAndAccount("admin", "admin6", new { FirstName = "Admin", LastName = "Admin", Email = "admin@admin.ad"}); }
             if (!WebSecurity.UserExists("userTest1")) { WebSecurity.CreateUserAndAccount("userTest1", "qwerty", new { FirstName = "test1", LastName = "testos1", Email = "test1@test.ts"}); }
             if (!WebSecurity.UserExists("userTest2")) { WebSecurity.CreateUserAndAccount("userTest2", "qwerty", new { FirstName = "test2", LastName = "testos2", Email = "test2@test.ts"}); }
             if (!WebSecurity.UserExists("userTest3")) { WebSecurity.CreateUserAndAccount("userTest3", "qwerty", new { FirstName = "test3", LastName = "testos3", Email = "test3@test.ts" });}
