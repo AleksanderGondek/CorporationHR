@@ -2,17 +2,17 @@
 @model IEnumerable<CorporationHR.Models.Patent>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Patents Index";
     var canEdit = ClereancesHelper.Instance.CheckIfUserCanEditAndDeleteContent(User.Identity.Name, "Patents");
 }
 
-<h2>Index</h2>
+<h2>Patents Index</h2>
 
 @{
     if (canEdit)
     {
         <p>
-            @Html.ActionLink("Create New", "Create")
+            @Html.ActionLink("Create New Patent", "Create")
         </p>
     }
 }

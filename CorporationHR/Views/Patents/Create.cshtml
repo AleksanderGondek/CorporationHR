@@ -1,17 +1,17 @@
 ﻿@model CorporationHR.Models.Patent
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Add new patent";
 }
 
-<h2>Create</h2>
+<h2>Add new patent</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Patent</legend>
+        <legend>New Patent</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.PatentName)
@@ -30,7 +30,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Add new patent" />
         </p>
     </fieldset>
 }

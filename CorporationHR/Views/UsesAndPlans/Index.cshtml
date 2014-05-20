@@ -6,13 +6,13 @@
     var canEdit = ClereancesHelper.Instance.CheckIfUserCanEditAndDeleteContent(User.Identity.Name, "UsesAndPlans");
 }
 
-<h2>Index</h2>
+<h2>Use And Plan Index</h2>
 
 @{
     if (canEdit)
     {
         <p>
-            @Html.ActionLink("Create New", "Create")
+            @Html.ActionLink("Create New Use And Plan", "Create")
         </p>
     }
 }

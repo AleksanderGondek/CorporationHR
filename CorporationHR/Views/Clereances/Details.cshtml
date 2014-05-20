@@ -6,10 +6,10 @@
     var canEdit = ClereancesHelper.Instance.CheckIfUserCanEditAndDeleteContent(User.Identity.Name, "Clearence Models");
 }
 
-<h2>Details</h2>
+<h2>Clearance details</h2>
 
 <fieldset>
-    <legend>ClearenceModel</legend>
+    <legend>Details</legend>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.ClearenceWeight)
@@ -28,7 +28,7 @@
     <div class="display-label">
          @Html.DisplayNameFor(model => model.ClearenceRgbColor)
     </div>
-    <div class="display-field">
+    <div class="display-field" style="background-color: @Model.ClearenceRgbColor">
         @Html.DisplayFor(model => model.ClearenceRgbColor)
     </div>
 </fieldset>

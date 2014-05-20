@@ -4,14 +4,14 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Add Tech Author</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>TechnologyAuthor</legend>
+        <legend>Technology Author</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.CorpoId)

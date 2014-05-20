@@ -6,13 +6,13 @@
     var canEdit = ClereancesHelper.Instance.CheckIfUserCanEditAndDeleteContent(User.Identity.Name, "Technologies");
 }
 
-<h2>Index</h2>
+<h2>Technology Index</h2>
 
 @{
     if (canEdit)
     {
         <p>
-            @Html.ActionLink("Create New", "Create")
+            @Html.ActionLink("Create New Technology", "Create")
         </p>
     }
 }

@@ -6,13 +6,13 @@
     var canEdit = ClereancesHelper.Instance.CheckIfUserCanEditAndDeleteContent(User.Identity.Name, "Security Of Tables");
 }
 
-<h2>Index</h2>
+<h2>Table Security Index</h2>
 
 @{
     if (canEdit)
     {
         <p>
-            @Html.ActionLink("Create New", "Create")
+            @Html.ActionLink("Create New Table Security Mapping", "Create")
         </p>
     }
 }

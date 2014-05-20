@@ -4,14 +4,14 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Use And Plan</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>UseAndPlan</legend>
+        <legend>Use And Plan</legend>
 
         @Html.HiddenFor(model => model.UseAndPlanId)
 

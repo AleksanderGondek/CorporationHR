@@ -95,7 +95,7 @@ namespace CorporationHR.Controllers
 
             ViewBag.ReturnUrl = Url.Action("Manage");
             ViewBag.UserClearenceName = ClereancesHelper.Instance.GetClearenceNameFromUserName(User.Identity.Name);
-
+            ViewBag.LastPasswordFailureDate = WebSecurity.GetLastPasswordFailureDate(User.Identity.Name);
             return View();
         }
 
