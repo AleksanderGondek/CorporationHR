@@ -28,5 +28,22 @@ namespace CorporationHR.Repositories
                 DatabaseContext.SaveChanges();
             }
         }
+
+        public override bool Save(SecurityOfTable entity)
+        {
+            var vanillaSave = base.Save(entity);
+
+            var clearance = false;
+            if (entity.SelectedClearenceId > 0)
+            {
+                var table = DatabaseContext.SecurityOfTables.Single(x => x.TableId.Equals(entity.TableId));
+                table.ClearenceModel = DatabaseContext.Clearences.Single(x => x.ClearenceId.Equals(entity.SelectedClearenceId));
+                DatabaseContext.Attach(table);
+                DatabaseContext.SaveChanges();
+                clearance = true;
+            }
+
+            return vanillaSave && clearance;
+        }
     }
 }

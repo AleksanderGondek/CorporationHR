@@ -61,6 +61,13 @@
             @Html.EditorFor(model => model.ConfirmPassword)
             @Html.ValidationMessageFor(model => model.ConfirmPassword)
         </div>
+        
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.SelectedClearenceId)
+        </div>
+        <div class="display-field">
+            @Html.DropDownListFor(model => model.SelectedClearenceId, Model.Clearences)
+        </div>
 
         <p>
             <input type="submit" value="Create" />

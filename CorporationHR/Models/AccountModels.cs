@@ -93,5 +93,10 @@ namespace CorporationHR.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [NotMapped]
+        public int SelectedClearenceId { get; set; }
+        [NotMapped]
+        public IEnumerable<SelectListItem> Clearences { get; set; }
     }
 }

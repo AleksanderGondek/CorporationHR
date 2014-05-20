@@ -20,10 +20,16 @@ namespace CorporationHR.Repositories
             var user = DatabaseContext.UserProfiles.Single(x => x.UserName.Equals(userProfile.UserName));
             if (user == null) return false;
 
-            user.ClearenceModel = DatabaseContext.Clearences.Single(x => x.ClearenceName.Equals("Normal"));
-            
             DatabaseContext.Attach(user);
             DatabaseContext.SaveChanges();
+
+            if (userProfile.SelectedClearenceId > 0)
+            {
+                var userek = DatabaseContext.UserProfiles.Single(x => x.UserName.Equals(userProfile.UserName));
+                userek.ClearenceModel = DatabaseContext.Clearences.Single(x => x.ClearenceId.Equals(userProfile.SelectedClearenceId));
+                DatabaseContext.Attach(user);
+                DatabaseContext.SaveChanges();
+            }
             return true;
         }
 

@@ -48,7 +48,12 @@ namespace CorporationHR.Controllers
         [CustomAuthorizeWrite(CallingController = "Security Of Tables")]
         public ActionResult Create()
         {
-            return View();
+            var newTable = new SecurityOfTable
+            {
+                SelectedClearenceId = -1,
+                Clearences = ClereancesHelper.Instance.GetClearencesSelectList()
+            };
+            return View(newTable);
         }
 
         // POST: /SecurityOfTables/Create

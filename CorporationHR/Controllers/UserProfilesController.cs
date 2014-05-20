@@ -49,7 +49,12 @@ namespace CorporationHR.Controllers
         [CustomAuthorizeWrite(CallingController = "User Profiles")]
         public ActionResult Create()
         {
-            return View();
+            var newUser = new RegisterModel
+            {
+                SelectedClearenceId = -1,
+                Clearences = ClereancesHelper.Instance.GetClearencesSelectList()
+            };
+            return View(newUser);
         }
 
         // POST: /UserProfiles/Create
@@ -61,6 +66,7 @@ namespace CorporationHR.Controllers
             if (ModelState.IsValid)
             {
                 _userProfilesRepo.Save(userprofile);
+
                 return RedirectToAction("Index");
             }
 

@@ -16,6 +16,13 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.TableName)
     </div>
+    <div class="display-label">
+        @Html.DisplayName("Clearance")
+    </div>
+    <div class="display-field" style="background-color: @Model.ClearenceModel.ClearenceRgbColor">
+        @Html.DisplayFor(model => model.ClearenceModel.ClearenceName) (Weight:
+        @Html.DisplayFor(model => model.ClearenceModel.ClearenceWeight) )
+    </div>
 </fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
