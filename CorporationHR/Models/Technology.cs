@@ -15,10 +15,13 @@ namespace CorporationHR.Models
         [Key]
         public int TechnologyId { get; set; }
         [Required]
+        [MinLength(36)]
         public string TechnologyInternalId { get; set; }
         [Required]
+        [MinLength(5)]
         public string ShortDescription { get; set; }
         [Required]
+        [MinLength(10)]
         public string FullDescription { get; set; }
         [Required]
         public DateTime CreatedOn { get; set; }

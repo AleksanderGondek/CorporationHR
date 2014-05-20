@@ -16,6 +16,7 @@ namespace CorporationHR.Models
         public int TableId { get; set; }
         [Required]
         [Display(Name = "TableName")]
+        [MinLength(5)]
         public string TableName { get; set; }
         [NotMapped]
         public int SelectedClearenceId { get; set; }

@@ -14,9 +14,11 @@ namespace CorporationHR.Models
         public int PatentId { get; set; }
         [Required]
         [Display(Name = "Patent Name")]
+        [MinLength(5)]
         public string PatentName { get; set; }
         [Required]
         [Display(Name = "Patent Text")]
+        [MinLength(5)]
         public string PatentText { get; set; }
     }
 }

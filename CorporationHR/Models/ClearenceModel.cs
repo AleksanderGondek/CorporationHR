@@ -15,14 +15,15 @@ namespace CorporationHR.Models
         public int ClearenceId { get; set; }
         [Required]
         [Display(Name = "Clearence Weight")]
-        [RegularExpression(@"^[0-9]\d{0,2}$")]
+        [RegularExpression(@"^[0-9]\d{0,2}$", ErrorMessage = "Clearence weight should be postive integer")]
         public int ClearenceWeight { get; set; }
         [Required]
         [Display(Name = "Clearence")]
+        [MinLength(1)]
         public string ClearenceName { get; set; }
         [Required]
         [Display(Name = "Clearence Color")]
-        [RegularExpression(@"^#(?:[0-9a-fA-F]{3}){1,2}$")]
+        [RegularExpression(@"^#(?:[0-9a-fA-F]{3}){1,2}$", ErrorMessage = "Clearence color should be hex color")]
         public string ClearenceRgbColor { get; set; }
 
         public virtual ICollection<UserProfile> UserProfiles { get; set; }
