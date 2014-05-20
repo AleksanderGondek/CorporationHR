@@ -16,7 +16,21 @@ namespace CorporationHR.CustomAttribute
         {
             if (filterContext.HttpContext.Request.IsAuthenticated)
             {
-                filterContext.Result = filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Error", action = "Forbidden" })); 
+                if (!string.IsNullOrEmpty(CallingController) && !string.IsNullOrEmpty(filterContext.HttpContext.User.Identity.Name))
+                {
+                    if (ClereancesHelper.Instance.CheckIfUserCanWriteContent(filterContext.HttpContext.User.Identity.Name, CallingController))
+                    {
+                        filterContext.Result = filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home", action = "ExploreDb" })); 
+                    }
+                    else
+                    {
+                        filterContext.Result = filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Error", action = "Forbidden" })); 
+                    }
+                }
+                else
+                {
+                    filterContext.Result = filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Error", action = "Forbidden" })); 
+                }
             }
             else
             {

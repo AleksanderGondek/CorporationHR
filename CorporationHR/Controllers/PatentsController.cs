@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CorporationHR.CustomAttribute;
 using CorporationHR.Models;
 using CorporationHR.Context;
 using CorporationHR.Repositories;
@@ -22,12 +23,14 @@ namespace CorporationHR.Controllers
         }
 
         // GET: /Patents/
+        [CustomAuthorizeRead(CallingController = "Patents")]
         public ActionResult Index()
         {
             return View(_patentsRepo.All);
         }
 
         // GET: /Patents/Details/5
+        [CustomAuthorizeRead(CallingController = "Patents")]
         public ActionResult Details(int id = 0)
         {
             Patent patent = _patentsRepo.Find(id);
@@ -39,6 +42,7 @@ namespace CorporationHR.Controllers
         }
 
         // GET: /Patents/Create
+        [CustomAuthorizeWrite(CallingController = "Patents")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +51,7 @@ namespace CorporationHR.Controllers
         // POST: /Patents/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorizeWrite(CallingController = "Patents")]
         public ActionResult Create(Patent patent)
         {
             if (ModelState.IsValid)
@@ -59,6 +64,7 @@ namespace CorporationHR.Controllers
         }
 
         // GET: /Patents/Edit/5
+        [CustomAuthorizeEditDel(CallingController = "Patents")]
         public ActionResult Edit(int id = 0)
         {
             Patent patent = _patentsRepo.Find(id);
@@ -72,6 +78,7 @@ namespace CorporationHR.Controllers
         // POST: /Patents/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorizeEditDel(CallingController = "Patents")]
         public ActionResult Edit(Patent patent)
         {
             if (ModelState.IsValid)
@@ -83,6 +90,7 @@ namespace CorporationHR.Controllers
         }
 
         // GET: /Patents/Delete/5
+        [CustomAuthorizeEditDel(CallingController = "Patents")]
         public ActionResult Delete(int id = 0)
         {
             Patent patent = _patentsRepo.Find(id);
@@ -96,6 +104,7 @@ namespace CorporationHR.Controllers
         // POST: /Patents/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomAuthorizeEditDel(CallingController = "Patents")]
         public ActionResult DeleteConfirmed(int id)
         {
             Patent patent = _patentsRepo.Find(id);
